@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwnmul68dt4rr"]
+[gd_scene load_steps=9 format=3 uid="uid://bwnmul68dt4rr"]
 
 [ext_resource type="Script" uid="uid://i34njg3da5v5" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://tomnlfum1cqm" path="res://assets/models/simple_table_low_poly.glb" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://pw0yfigrla5g" path="res://scenes/bins/green_recycle_bin_10.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://c6q4efrudxqpb" path="res://scenes/items/water_bottle_1.tscn" id="4_1bvp3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -41,3 +42,6 @@ mesh = SubResource("PlaneMesh_0xm2m")
 
 [node name="green_recycle_bin_10" parent="." instance=ExtResource("3_h2yge")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.2489496, 0.45855582, 0)
+
+[node name="water_bottle_1" parent="." instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4542279, 0.52256715, 0)

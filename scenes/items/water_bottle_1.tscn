@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://c6q4efrudxqpb"]
+[gd_scene load_steps=8 format=4 uid="uid://c6q4efrudxqpb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6o5pr"]
 resource_name = "blue"
@@ -78,6 +78,10 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_s8bjb")
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1dn2m"]
+radius = 0.07861328
+height = 0.43493652
+
 [node name="water_bottle_1" type="Node3D"]
 
 [node name="Object_8" type="MeshInstance3D" parent="."]
@@ -87,3 +91,9 @@ skeleton = NodePath("")
 [node name="Object_9" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_d2tih")
 skeleton = NodePath("")
+
+[node name="interaction_area" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="interaction_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0099487305, 0)
+shape = SubResource("CapsuleShape3D_1dn2m")
