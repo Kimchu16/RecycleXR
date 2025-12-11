@@ -29,6 +29,7 @@ enabled=PackedStringArray("res://addons/godot-xr-tools/plugin.cfg")
 3d_physics/layer_1="Floor"
 3d_physics/layer_2="Static"
 3d_physics/layer_3="Pickable"
+3d_physics/layer_17="Held Item"
 
 [rendering]
 
@@ -39,6 +40,8 @@ textures/vram_compression/import_etc2_astc=true
 [xr]
 
 openxr/enabled=true
+openxr/reference_space=2
+openxr/environment_blend_mode=2
 openxr/extensions/hand_tracking=true
 shaders/enabled=true
 openxr/extensions/meta/passthrough=true

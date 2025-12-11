@@ -1,11 +1,18 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwnmul68dt4rr"]
+[gd_scene load_steps=25 format=3 uid="uid://bwnmul68dt4rr"]
 
-[ext_resource type="Script" uid="uid://i34njg3da5v5" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://tomnlfum1cqm" path="res://assets/models/simple_table_low_poly.glb" id="2_0xm2m"]
-[ext_resource type="Material" uid="uid://p0q2df2dmy62" path="res://addons/godot-xr-tools/hands/materials/ghost_hand.tres" id="2_7mycd"]
-[ext_resource type="Material" path="res://addons/godot-xr-tools/materials/capsule.tres" id="3_272bh"]
+[ext_resource type="Material" uid="uid://ds2dpvbpht0ea" path="res://addons/godot-xr-tools/hands/materials/labglove.tres" id="2_7mycd"]
+[ext_resource type="Material" uid="uid://cdb40djkihelq" path="res://addons/godot-xr-tools/hands/materials/cleaning_glove.tres" id="3_272bh"]
 [ext_resource type="PackedScene" uid="uid://pw0yfigrla5g" path="res://scenes/bins/green_recycle_bin_10.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://c6q4efrudxqpb" path="res://scenes/items/water_bottle_1.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="4_272bh"]
+[ext_resource type="PackedScene" uid="uid://bh8isvqs258cp" path="res://addons/hand_pose_detector/hand_pose_controller.tscn" id="5_efxa6"]
+[ext_resource type="Script" uid="uid://cpvr2rutp06xo" path="res://addons/hand_pose_detector/hand_pose_action.gd" id="7_dg77c"]
+[ext_resource type="Script" uid="uid://ctv2aqrgdjxas" path="res://addons/hand_pose_detector/hand_pose.gd" id="7_ycdy4"]
+[ext_resource type="Resource" uid="uid://dhbqusuodrl3r" path="res://addons/hand_pose_detector/poses/fist.tres" id="8_dg77c"]
+[ext_resource type="Script" uid="uid://flof6yq6ri23" path="res://addons/hand_pose_detector/hand_pose_set.gd" id="8_w48qg"]
+[ext_resource type="Script" uid="uid://c862lel4opmi7" path="res://addons/hand_pose_detector/hand_pose_action_map.gd" id="8_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="13_ycdy4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -19,7 +26,33 @@ background_mode = 2
 sky = SubResource("Sky_0xm2m")
 tonemap_mode = 2
 
+[sub_resource type="Resource" id="Resource_ycdy4"]
+script = ExtResource("7_dg77c")
+pose = ExtResource("8_dg77c")
+action_type = 1
+action_name = "grip"
+metadata/_custom_type_script = "uid://cpvr2rutp06xo"
+
+[sub_resource type="Resource" id="Resource_w48qg"]
+script = ExtResource("8_ycdy4")
+actions = Array[ExtResource("7_dg77c")]([SubResource("Resource_ycdy4")])
+metadata/_custom_type_script = "uid://c862lel4opmi7"
+
+[sub_resource type="Resource" id="Resource_vivmo"]
+script = ExtResource("8_w48qg")
+poses = Array[ExtResource("7_ycdy4")]([ExtResource("8_dg77c")])
+metadata/_custom_type_script = "uid://flof6yq6ri23"
+
+[sub_resource type="Resource" id="Resource_2cqfq"]
+script = ExtResource("8_w48qg")
+poses = Array[ExtResource("7_ycdy4")]([ExtResource("8_dg77c")])
+metadata/_custom_type_script = "uid://flof6yq6ri23"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycdy4"]
+albedo_color = Color(0.18717614, 0.18717614, 0.18717614, 1)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_0xm2m"]
+material = SubResource("StandardMaterial3D_ycdy4")
 size = Vector2(5, 5)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1bvp3"]
@@ -28,7 +61,9 @@ size = Vector2(5, 5)
 size = Vector3(0.9373779, 0.6586609, 2.0043945)
 
 [node name="Main" type="Node3D"]
-script = ExtResource("1_ig7tw")
+
+[node name="StartXR" parent="." instance=ExtResource("13_ycdy4")]
+enable_passthrough = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -48,6 +83,10 @@ tracker = &"/user/hand_tracker/left"
 material = ExtResource("2_7mycd")
 
 [node name="XRHandModifier3D" type="XRHandModifier3D" parent="XROrigin3D/Tracker_Left/OpenXRFbHandTrackingMesh"]
+
+[node name="HandPoseController" parent="XROrigin3D/Tracker_Left" instance=ExtResource("5_efxa6")]
+controller_action_map = SubResource("Resource_w48qg")
+hand_pose_set = SubResource("Resource_vivmo")
 
 [node name="Tracker_Right" type="XRNode3D" parent="XROrigin3D"]
 tracker = &"/user/hand_tracker/right"
@@ -85,6 +124,24 @@ bones/25/name = "RightLittleTip"
 [node name="XRHandModifier3D" type="XRHandModifier3D" parent="XROrigin3D/Tracker_Right/OpenXRFbHandTrackingMesh"]
 hand_tracker = &"/user/hand_tracker/right"
 
+[node name="HandPoseController" parent="XROrigin3D/Tracker_Right" instance=ExtResource("5_efxa6")]
+controller_tracker_name = "/user/hand_pose_controller/right"
+controller_action_map = SubResource("Resource_w48qg")
+hand_tracker_name = "/user/hand_tracker/right"
+hand_pose_set = SubResource("Resource_2cqfq")
+
+[node name="Controller_Left" type="XRController3D" parent="XROrigin3D"]
+tracker = &"/user/hand_pose_controller/left"
+
+[node name="FunctionPickup" parent="XROrigin3D/Controller_Left" instance=ExtResource("4_272bh")]
+grab_collision_mask = 4
+
+[node name="Controller_Right" type="XRController3D" parent="XROrigin3D"]
+tracker = &"/user/hand_pose_controller/right"
+
+[node name="FunctionPickup" parent="XROrigin3D/Controller_Right" instance=ExtResource("4_272bh")]
+grab_collision_mask = 65540
+
 [node name="Floor" type="StaticBody3D" parent="."]
 collision_mask = 7
 
@@ -104,11 +161,31 @@ collision_mask = 7
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0018920898, -0.0027618408, -0.001953125)
 shape = SubResource("BoxShape3D_1bvp3")
 
-[node name="green_recycle_bin_10" parent="." instance=ExtResource("3_h2yge")]
+[node name="Bins" type="Node3D" parent="."]
+
+[node name="green_recycle_bin_10" parent="Bins" instance=ExtResource("3_h2yge")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.2489496, 0.45855582, 0)
 collision_layer = 2
 collision_mask = 7
 
-[node name="water_bottle_1" parent="." instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4542279, 0.53168017, 0)
-collision_mask = 3
+[node name="Trash" type="Node3D" parent="."]
+
+[node name="water_bottle_1" parent="Trash" instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16668928, 0.8560804, 0)
+picked_up_layer = 4
+
+[node name="water_bottle_2" parent="Trash" instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16668928, 0.7701408, 0.62861913)
+picked_up_layer = 4
+
+[node name="water_bottle_3" parent="Trash" instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5326891, 0.7987827, 0.62861913)
+picked_up_layer = 4
+
+[node name="water_bottle_4" parent="Trash" instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22351217, 0.8947052, 0.18694037)
+picked_up_layer = 4
+
+[node name="water_bottle_5" parent="Trash" instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22351217, 0.81033486, 0.5315769)
+picked_up_layer = 4
