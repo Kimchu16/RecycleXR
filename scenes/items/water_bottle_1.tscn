@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=4 uid="uid://c6q4efrudxqpb"]
+[gd_scene load_steps=9 format=4 uid="uid://c6q4efrudxqpb"]
+
+[ext_resource type="Script" uid="uid://1u6phy4xlkeq" path="res://scripts/water_bottle.gd" id="1_4elld"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6o5pr"]
 resource_name = "blue"
@@ -82,7 +84,10 @@ shadow_mesh = SubResource("ArrayMesh_s8bjb")
 radius = 0.07861328
 height = 0.43493652
 
-[node name="water_bottle_1" type="Node3D"]
+[node name="water_bottle_1" type="RigidBody3D"]
+script = ExtResource("1_4elld")
+picked_up_layer = 65540
+second_hand_grab = 1
 
 [node name="Object_8" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_wkpgc")
@@ -92,8 +97,6 @@ skeleton = NodePath("")
 mesh = SubResource("ArrayMesh_d2tih")
 skeleton = NodePath("")
 
-[node name="interaction_area" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="interaction_area"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0099487305, 0)
 shape = SubResource("CapsuleShape3D_1dn2m")
