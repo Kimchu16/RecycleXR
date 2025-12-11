@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwnmul68dt4rr"]
+[gd_scene load_steps=13 format=3 uid="uid://bwnmul68dt4rr"]
 
 [ext_resource type="Script" uid="uid://i34njg3da5v5" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://tomnlfum1cqm" path="res://assets/models/simple_table_low_poly.glb" id="2_0xm2m"]
+[ext_resource type="Material" uid="uid://p0q2df2dmy62" path="res://addons/godot-xr-tools/hands/materials/ghost_hand.tres" id="2_7mycd"]
+[ext_resource type="Material" path="res://addons/godot-xr-tools/materials/capsule.tres" id="3_272bh"]
 [ext_resource type="PackedScene" uid="uid://pw0yfigrla5g" path="res://scenes/bins/green_recycle_bin_10.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://c6q4efrudxqpb" path="res://scenes/items/water_bottle_1.tscn" id="4_1bvp3"]
 
@@ -38,6 +40,50 @@ environment = SubResource("Environment_h2yge")
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+
+[node name="Tracker_Left" type="XRNode3D" parent="XROrigin3D"]
+tracker = &"/user/hand_tracker/left"
+
+[node name="OpenXRFbHandTrackingMesh" type="OpenXRFbHandTrackingMesh" parent="XROrigin3D/Tracker_Left"]
+material = ExtResource("2_7mycd")
+
+[node name="XRHandModifier3D" type="XRHandModifier3D" parent="XROrigin3D/Tracker_Left/OpenXRFbHandTrackingMesh"]
+
+[node name="Tracker_Right" type="XRNode3D" parent="XROrigin3D"]
+tracker = &"/user/hand_tracker/right"
+
+[node name="OpenXRFbHandTrackingMesh" type="OpenXRFbHandTrackingMesh" parent="XROrigin3D/Tracker_Right"]
+hand = 1
+material = ExtResource("3_272bh")
+bones/0/name = "RightPalm"
+bones/1/name = "RightHand"
+bones/2/name = "RightThumbMetacarpal"
+bones/3/name = "RightThumbProximal"
+bones/4/name = "RightThumbDistal"
+bones/5/name = "RightThumbTip"
+bones/6/name = "RightIndexMetacarpal"
+bones/7/name = "RightIndexProximal"
+bones/8/name = "RightIndexIntermediate"
+bones/9/name = "RightIndexDistal"
+bones/10/name = "RightIndexTip"
+bones/11/name = "RightMiddleMetacarpal"
+bones/12/name = "RightMiddleProximal"
+bones/13/name = "RightMiddleIntermediate"
+bones/14/name = "RightMiddleDistal"
+bones/15/name = "RightMiddleTip"
+bones/16/name = "RightRingMetacarpal"
+bones/17/name = "RightRingProximal"
+bones/18/name = "RightRingIntermediate"
+bones/19/name = "RightRingDistal"
+bones/20/name = "RightRingTip"
+bones/21/name = "RightLittleMetacarpal"
+bones/22/name = "RightLittleProximal"
+bones/23/name = "RightLittleIntermediate"
+bones/24/name = "RightLittleDistal"
+bones/25/name = "RightLittleTip"
+
+[node name="XRHandModifier3D" type="XRHandModifier3D" parent="XROrigin3D/Tracker_Right/OpenXRFbHandTrackingMesh"]
+hand_tracker = &"/user/hand_tracker/right"
 
 [node name="Floor" type="StaticBody3D" parent="."]
 collision_mask = 7
