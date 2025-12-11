@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=4 uid="uid://pw0yfigrla5g"]
+[gd_scene load_steps=6 format=4 uid="uid://pw0yfigrla5g"]
 
 [ext_resource type="Texture2D" uid="uid://7pnrbvohgopc" path="res://assets/models/low_poly_recycle_props_2.png" id="1_xaw0s"]
 
@@ -41,8 +41,15 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_pvgel")
 
-[node name="green_recycle_bin_10" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_xaw0s"]
+size = Vector3(0.5118408, 0.7680664, 0.52923584)
+
+[node name="green_recycle_bin_10" type="StaticBody3D"]
 
 [node name="Object_29" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_o3ns7")
 skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0004272461, -0.07324219, 0.021881104)
+shape = SubResource("BoxShape3D_xaw0s")

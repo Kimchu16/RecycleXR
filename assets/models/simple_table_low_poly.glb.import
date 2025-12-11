@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/simple_table_low_poly.glb-7f8675b4aec247bb950
 
 [params]
 
-nodes/root_type="Node3D"
+nodes/root_type="StaticBody3D"
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true

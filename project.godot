@@ -26,7 +26,9 @@ enabled=PackedStringArray()
 
 [layer_names]
 
-3d_physics/layer_3="pickable"
+3d_physics/layer_1="Floor"
+3d_physics/layer_2="Static"
+3d_physics/layer_3="Pickable"
 
 [rendering]
 

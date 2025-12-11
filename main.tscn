@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bwnmul68dt4rr"]
+[gd_scene load_steps=11 format=3 uid="uid://bwnmul68dt4rr"]
 
 [ext_resource type="Script" uid="uid://i34njg3da5v5" path="res://scripts/main.gd" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://tomnlfum1cqm" path="res://assets/models/simple_table_low_poly.glb" id="2_0xm2m"]
@@ -20,6 +20,11 @@ tonemap_mode = 2
 [sub_resource type="PlaneMesh" id="PlaneMesh_0xm2m"]
 size = Vector2(5, 5)
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_1bvp3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1bvp3"]
+size = Vector3(0.9373779, 0.6586609, 2.0043945)
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_ig7tw")
 
@@ -34,14 +39,30 @@ environment = SubResource("Environment_h2yge")
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
 
+[node name="Floor" type="StaticBody3D" parent="."]
+collision_mask = 7
+
+[node name="Floor" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_0xm2m")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_1bvp3")
+
 [node name="Table" parent="." instance=ExtResource("2_0xm2m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4285278, 0, -0.07668316)
+collision_layer = 2
+collision_mask = 7
 
-[node name="Floor" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_0xm2m")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Table"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0018920898, -0.0027618408, -0.001953125)
+shape = SubResource("BoxShape3D_1bvp3")
 
 [node name="green_recycle_bin_10" parent="." instance=ExtResource("3_h2yge")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.2489496, 0.45855582, 0)
+collision_layer = 2
+collision_mask = 7
 
 [node name="water_bottle_1" parent="." instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4542279, 0.52256715, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4542279, 0.53168017, 0)
+collision_mask = 3
