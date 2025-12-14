@@ -1,6 +1,9 @@
-[gd_scene load_steps=9 format=4 uid="uid://c6q4efrudxqpb"]
+[gd_scene load_steps=12 format=4 uid="uid://c6q4efrudxqpb"]
 
 [ext_resource type="Script" uid="uid://1u6phy4xlkeq" path="res://scripts/water_bottle.gd" id="1_4elld"]
+[ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="2_qlnde"]
+[ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="3_rhegp"]
+[ext_resource type="PackedScene" uid="uid://da2qgxxwwitl6" path="res://addons/godot-xr-tools/objects/highlight/highlight_ring.tscn" id="4_rhegp"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6o5pr"]
 resource_name = "blue"
@@ -42,8 +45,9 @@ shadow_mesh = SubResource("ArrayMesh_sx0bm")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqwx5"]
 resource_name = "water_bottle_material"
+transparency = 1
 cull_mode = 2
-albedo_color = Color(0.9133264, 0.9133264, 0.9133264, 1)
+albedo_color = Color(0.64705884, 0.9137255, 0.9137255, 0.41568628)
 roughness = 0.4
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_s8bjb"]
@@ -103,3 +107,11 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0037612915, 0)
 shape = SubResource("CapsuleShape3D_1dn2m")
+
+[node name="GrabPointHandRight" parent="." instance=ExtResource("3_rhegp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4503164e-05, -0.00040518492, -0.19284055)
+
+[node name="GrabPointHandLeft" parent="." instance=ExtResource("2_qlnde")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.19745915)
+
+[node name="HighlightRing" parent="." instance=ExtResource("4_rhegp")]

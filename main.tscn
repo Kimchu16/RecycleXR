@@ -135,12 +135,16 @@ tracker = &"/user/hand_pose_controller/left"
 
 [node name="FunctionPickup" parent="XROrigin3D/Controller_Left" instance=ExtResource("4_272bh")]
 grab_collision_mask = 4
+ranged_distance = 100.0
+ranged_angle = 45.0
 
 [node name="Controller_Right" type="XRController3D" parent="XROrigin3D"]
 tracker = &"/user/hand_pose_controller/right"
 
 [node name="FunctionPickup" parent="XROrigin3D/Controller_Right" instance=ExtResource("4_272bh")]
 grab_collision_mask = 65540
+ranged_distance = 100.0
+ranged_angle = 45.0
 
 [node name="Floor" type="StaticBody3D" parent="."]
 collision_mask = 7
@@ -153,7 +157,7 @@ skeleton = NodePath("../..")
 shape = SubResource("WorldBoundaryShape3D_1bvp3")
 
 [node name="Table" parent="." instance=ExtResource("2_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4285278, 0, -0.07668316)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9472176, 0, -0.07668316)
 collision_layer = 2
 collision_mask = 7
 
@@ -164,18 +168,18 @@ shape = SubResource("BoxShape3D_1bvp3")
 [node name="Bins" type="Node3D" parent="."]
 
 [node name="green_recycle_bin_10" parent="Bins" instance=ExtResource("3_h2yge")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.2489496, 0.45855582, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.8952446, 0.45855582, 0)
 collision_layer = 2
 collision_mask = 7
 
 [node name="Trash" type="Node3D" parent="."]
 
 [node name="water_bottle_1" parent="Trash" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16668928, 0.8560804, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6290572, 0.8560804, 0)
 picked_up_layer = 4
 
 [node name="water_bottle_2" parent="Trash" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16668928, 0.7701408, 0.62861913)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.56177884, 0.7701408, 0.38250327)
 picked_up_layer = 4
 
 [node name="water_bottle_3" parent="Trash" instance=ExtResource("4_1bvp3")]
@@ -183,9 +187,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5326891, 0.7987827, 0.62861
 picked_up_layer = 4
 
 [node name="water_bottle_4" parent="Trash" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22351217, 0.8947052, 0.18694037)
+transform = Transform3D(0.9998799, 0, -0.015497903, 0, 1, 0, 0.015497903, 0, 0.9998799, 0.5834871, 0.8947052, 0.18694037)
 picked_up_layer = 4
 
 [node name="water_bottle_5" parent="Trash" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22351217, 0.81033486, 0.5315769)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.61715126, 0.81033486, 0.037714005)
 picked_up_layer = 4
