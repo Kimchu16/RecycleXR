@@ -29,6 +29,7 @@ func spawn_trash_at(spawn_point: Node3D):
 
 func on_trash_sorted():
 	sorted_count += 1
+	print("Trash sorted +1")
 
 	if sorted_count >= MAX_TRASH:
 		await get_tree().create_timer(0.6).timeout

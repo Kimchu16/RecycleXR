@@ -1,6 +1,7 @@
 extends XRToolsPickable
 
 signal sorted_correct
+signal sorted_incorrect
 
 enum MaterialType {
 	PLASTIC,
@@ -30,4 +31,9 @@ func _on_released(pickable, by):
 
 func on_sorted_correctly():
 	emit_signal("sorted_correct")
+	queue_free()
+
+func on_sorted_incorrectly():
+	emit_signal("sorted_incorrect") # Use later for feedback fx
+	print("Wrong")
 	queue_free()

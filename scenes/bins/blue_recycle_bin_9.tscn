@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=4 uid="uid://b42eurmxw7s01"]
+[gd_scene load_steps=8 format=4 uid="uid://b42eurmxw7s01"]
 
 [ext_resource type="Texture2D" uid="uid://dx0bowdegulx8" path="res://assets/models/low_poly_recycle_props_1.png" id="1_ei6mk"]
+[ext_resource type="Script" uid="uid://brohn7hifkvg8" path="res://scripts/detector.gd" id="2_38coj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wsscb"]
 resource_name = "Blue_Box_Material.001"
@@ -41,8 +42,26 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_hgorv")
 
-[node name="blue_recycle_bin_9" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_rcj8e"]
+size = Vector3(0.5118408, 0.7680664, 0.52923584)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vpps0"]
+size = Vector3(0.37457275, 0.047790527, 0.36621094)
+
+[node name="blue_recycle_bin_9" type="StaticBody3D"]
 
 [node name="Object_27" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_b3wl8")
 skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0004272461, -0.07324219, 0.021881104)
+shape = SubResource("BoxShape3D_rcj8e")
+
+[node name="Detector" type="Area3D" parent="."]
+script = ExtResource("2_38coj")
+accepts_material = Array[int]([2])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0018005371, 0.2971931, 0.048339844)
+shape = SubResource("BoxShape3D_vpps0")

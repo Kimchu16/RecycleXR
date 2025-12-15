@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=4 uid="uid://roguu7colgh2"]
+[gd_scene load_steps=8 format=4 uid="uid://roguu7colgh2"]
 
 [ext_resource type="Texture2D" uid="uid://cw4kwqsxnexsj" path="res://assets/models/low_poly_recycle_props_3.png" id="1_n80xo"]
+[ext_resource type="Script" uid="uid://brohn7hifkvg8" path="res://scripts/detector.gd" id="2_goie0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j0280"]
 resource_name = "Yellow_Box_Material"
@@ -41,8 +42,26 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_58xy4")
 
-[node name="yellow_recycle_bin_11" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ufyx"]
+size = Vector3(0.5118408, 0.7680664, 0.52923584)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6yv6l"]
+size = Vector3(0.37457275, 0.047790527, 0.36621094)
+
+[node name="yellow_recycle_bin_11" type="StaticBody3D"]
 
 [node name="Object_31" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_b483u")
 skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0004272461, -0.07324219, 0.021881104)
+shape = SubResource("BoxShape3D_7ufyx")
+
+[node name="Detector" type="Area3D" parent="."]
+script = ExtResource("2_goie0")
+accepts_material = Array[int]([0])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0018005371, 0.2971931, 0.048339844)
+shape = SubResource("BoxShape3D_6yv6l")
