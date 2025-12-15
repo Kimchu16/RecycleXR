@@ -52,6 +52,7 @@ points = PackedVector3Array(-0.00019669533, -0.40075532, -1.0049562, -0.00019669
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_g4x0t")
+material_type = 2
 second_hand_grab = 1
 
 [node name="Object_25" type="MeshInstance3D" parent="."]

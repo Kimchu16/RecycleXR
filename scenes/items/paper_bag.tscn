@@ -49,6 +49,7 @@ size = Vector3(0.48931885, 1, 0.99261475)
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_got10")
+material_type = 1
 
 [node name="Object_23" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.15, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)

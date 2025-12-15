@@ -51,6 +51,7 @@ points = PackedVector3Array(-0.04, -0.125, 0, -0.034643695, -0.125, -0.02, -0.03
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_rvlyg")
+material_type = 2
 
 [node name="Object_13" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_h0kgy")
