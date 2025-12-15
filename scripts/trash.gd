@@ -32,6 +32,7 @@ func _on_released(pickable, by):
 
 func on_sorted_correctly():
 	emit_signal("sorted_correct")
+	
 	queue_free()
 
 func on_sorted_incorrectly():

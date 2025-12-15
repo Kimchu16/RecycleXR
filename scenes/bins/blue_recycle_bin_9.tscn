@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://b42eurmxw7s01"]
+[gd_scene load_steps=10 format=4 uid="uid://b42eurmxw7s01"]
 
 [ext_resource type="Texture2D" uid="uid://dx0bowdegulx8" path="res://assets/models/low_poly_recycle_props_1.png" id="1_ei6mk"]
 [ext_resource type="Script" uid="uid://brohn7hifkvg8" path="res://scripts/detector.gd" id="2_38coj"]
+[ext_resource type="AudioStream" uid="uid://obbljxdhm2gt" path="res://assets/audio/correct-choice-43861.mp3" id="3_vpps0"]
+[ext_resource type="AudioStream" uid="uid://caagioat5ksds" path="res://assets/audio/error-08-206492.mp3" id="4_d0umo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wsscb"]
 resource_name = "Blue_Box_Material.001"
@@ -66,3 +68,13 @@ accepts_material = Array[int]([2])
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Detector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0018005371, 0.2971931, 0.048339844)
 shape = SubResource("BoxShape3D_vpps0")
+
+[node name="AudioCorrect" type="AudioStreamPlayer3D" parent="Detector"]
+stream = ExtResource("3_vpps0")
+attenuation_model = 2
+unit_size = 1.0
+
+[node name="AudioIncorrect" type="AudioStreamPlayer3D" parent="Detector"]
+stream = ExtResource("4_d0umo")
+attenuation_model = 2
+unit_size = 1.0

@@ -1,4 +1,4 @@
-[gd_resource type="OpenXRActionMap" load_steps=42 format=3 uid="uid://cwlfkvko7hcyf"]
+[gd_resource type="OpenXRActionMap" load_steps=40 format=3 uid="uid://cwlfkvko7hcyf"]
 
 [sub_resource type="OpenXRAction" id="OpenXRAction_6ivru"]
 resource_name = "trigger"
@@ -200,14 +200,6 @@ binding_path = "/user/hand/right/output/haptic"
 interaction_profile_path = "/interaction_profiles/khr/simple_controller"
 bindings = [SubResource("OpenXRIPBinding_r3qn1"), SubResource("OpenXRIPBinding_n01b8"), SubResource("OpenXRIPBinding_pjtev"), SubResource("OpenXRIPBinding_nqyri"), SubResource("OpenXRIPBinding_86uui"), SubResource("OpenXRIPBinding_nrtxc"), SubResource("OpenXRIPBinding_qovyo"), SubResource("OpenXRIPBinding_d6uso"), SubResource("OpenXRIPBinding_hvi7v"), SubResource("OpenXRIPBinding_7dxun"), SubResource("OpenXRIPBinding_rp8ih"), SubResource("OpenXRIPBinding_0uca0"), SubResource("OpenXRIPBinding_rjtq8"), SubResource("OpenXRIPBinding_lce2q")]
 
-[sub_resource type="OpenXRIPBinding" id="OpenXRIPBinding_lf38q"]
-action = SubResource("OpenXRAction_oi0ij")
-binding_path = "/user/eyes_ext/input/gaze_ext/pose"
-
-[sub_resource type="OpenXRInteractionProfile" id="OpenXRInteractionProfile_ru5ja"]
-interaction_profile_path = "/interaction_profiles/ext/eye_gaze_interaction"
-bindings = [SubResource("OpenXRIPBinding_lf38q")]
-
 [resource]
 action_sets = [SubResource("OpenXRActionSet_ngwcy")]
-interaction_profiles = [SubResource("OpenXRInteractionProfile_ckeh6"), SubResource("OpenXRInteractionProfile_ru5ja")]
+interaction_profiles = [SubResource("OpenXRInteractionProfile_ckeh6")]
