@@ -17,6 +17,7 @@ enum MaterialType {
 
 func _ready():
 	super._ready() # Run parent ready function
+	add_to_group("trash")
 	icon_sprite.texture = label_icon
 	icon_sprite.visible = false   # hidden until grabbed
 	

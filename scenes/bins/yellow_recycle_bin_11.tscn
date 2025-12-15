@@ -59,6 +59,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0004272461, -0.07324219, 0
 shape = SubResource("BoxShape3D_7ufyx")
 
 [node name="Detector" type="Area3D" parent="."]
+collision_mask = 4
 script = ExtResource("2_goie0")
 accepts_material = Array[int]([0])
 
