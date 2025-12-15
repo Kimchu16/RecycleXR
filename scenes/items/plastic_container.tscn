@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=4 uid="uid://c7wqami07vrh2"]
+[gd_scene load_steps=13 format=4 uid="uid://c7wqami07vrh2"]
 
 [ext_resource type="Script" uid="uid://1u6phy4xlkeq" path="res://scripts/trash.gd" id="1_jy7ep"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="2_86pnq"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="3_8tl2j"]
 [ext_resource type="PackedScene" uid="uid://da2qgxxwwitl6" path="res://addons/godot-xr-tools/objects/highlight/highlight_ring.tscn" id="4_3bs7g"]
+[ext_resource type="Texture2D" uid="uid://cle5g5a3mtxrc" path="res://assets/images/PET-symbol.png" id="5_86pnq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dpr6g"]
 resource_name = "white"
@@ -90,6 +91,7 @@ points = PackedVector3Array(-0.1057459, 0.062000006, -0.15, -0.105569705, -0.055
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_jy7ep")
+label_icon = ExtResource("5_86pnq")
 second_hand_grab = 1
 
 [node name="Object_20" type="MeshInstance3D" parent="."]
@@ -113,3 +115,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4503164e-05, 0.09616203, -
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10449344, -0.11640288)
 
 [node name="HighlightRing" parent="." instance=ExtResource("4_3bs7g")]
+
+[node name="Label_Icon" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08221319, 0, 0)
+pixel_size = 0.0007
+axis = 0
+texture = ExtResource("5_86pnq")

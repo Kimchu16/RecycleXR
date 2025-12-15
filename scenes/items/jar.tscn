@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://bw3yhnjl6fy4m"]
+[gd_scene load_steps=10 format=4 uid="uid://bw3yhnjl6fy4m"]
 
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="1_718sp"]
 [ext_resource type="Script" uid="uid://1u6phy4xlkeq" path="res://scripts/trash.gd" id="1_g4x0t"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="2_g4x0t"]
 [ext_resource type="PackedScene" uid="uid://da2qgxxwwitl6" path="res://addons/godot-xr-tools/objects/highlight/highlight_ring.tscn" id="3_vumt4"]
+[ext_resource type="Texture2D" uid="uid://drmlwvkkrtjm4" path="res://assets/images/Glass-symbol.png" id="5_vumt4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7jhr"]
 resource_name = "glass"
@@ -53,6 +54,7 @@ collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_g4x0t")
 material_type = 2
+label_icon = ExtResource("5_vumt4")
 second_hand_grab = 1
 
 [node name="Object_25" type="MeshInstance3D" parent="."]
@@ -71,3 +73,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4503164e-05, 0.078794435, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.087125845, -0.17536274)
 
 [node name="HighlightRing" parent="." instance=ExtResource("3_vumt4")]
+
+[node name="Label_Icon" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09965429, 0, 0)
+pixel_size = 0.0007
+axis = 0
+texture = ExtResource("5_vumt4")

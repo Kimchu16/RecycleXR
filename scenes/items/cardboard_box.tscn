@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://dtbln0xscmcqv"]
+[gd_scene load_steps=10 format=4 uid="uid://dtbln0xscmcqv"]
 
 [ext_resource type="Script" uid="uid://1u6phy4xlkeq" path="res://scripts/trash.gd" id="1_7omcs"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="2_j10mb"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="3_svsjb"]
 [ext_resource type="PackedScene" uid="uid://da2qgxxwwitl6" path="res://addons/godot-xr-tools/objects/highlight/highlight_ring.tscn" id="4_rcbfd"]
+[ext_resource type="Texture2D" uid="uid://5w2sxlyv8lmf" path="res://assets/images/FSC-symbol.png" id="5_j10mb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ipx03"]
 resource_name = "light_brown"
@@ -50,6 +51,7 @@ collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_7omcs")
 material_type = 1
+label_icon = ExtResource("5_j10mb")
 second_hand_grab = 1
 
 [node name="Object_11" type="MeshInstance3D" parent="."]
@@ -63,10 +65,16 @@ shape = SubResource("ConvexPolygonShape3D_5d1ks")
 
 [node name="GrabPointHandRight" parent="." instance=ExtResource("2_j10mb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4503164e-05, 0.051050372, -0.11024924)
-visible = true
 
 [node name="GrabPointHandLeft" parent="." instance=ExtResource("3_svsjb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.059381783, -0.11486784)
-visible = true
 
 [node name="HighlightRing" parent="." instance=ExtResource("4_rcbfd")]
+
+[node name="Label_Icon" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1270104, 0, 0)
+offset = Vector2(100, -100)
+flip_h = true
+pixel_size = 0.0007
+axis = 0
+texture = ExtResource("5_j10mb")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=4 uid="uid://c6q4efrudxqpb"]
+[gd_scene load_steps=13 format=4 uid="uid://c6q4efrudxqpb"]
 
 [ext_resource type="Script" uid="uid://1u6phy4xlkeq" path="res://scripts/trash.gd" id="1_4elld"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="2_qlnde"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="3_rhegp"]
 [ext_resource type="PackedScene" uid="uid://da2qgxxwwitl6" path="res://addons/godot-xr-tools/objects/highlight/highlight_ring.tscn" id="4_rhegp"]
+[ext_resource type="Texture2D" uid="uid://cle5g5a3mtxrc" path="res://assets/images/PET-symbol.png" id="5_tuaff"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6o5pr"]
 resource_name = "blue"
@@ -92,6 +93,7 @@ height = 0.40751648
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_4elld")
+label_icon = ExtResource("5_tuaff")
 second_hand_grab = 1
 metadata/_custom_type_script = "uid://bfrlpbsqg5lqr"
 
@@ -116,3 +118,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4503164e-05, 0.051050372, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.059381783, -0.19745915)
 
 [node name="HighlightRing" parent="." instance=ExtResource("4_rhegp")]
+
+[node name="Label_Icon" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.049439996)
+offset = Vector2(0, -80)
+pixel_size = 0.0007
+texture = ExtResource("5_tuaff")

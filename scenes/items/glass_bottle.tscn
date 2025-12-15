@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://h7r1tvq0kuam"]
+[gd_scene load_steps=10 format=4 uid="uid://h7r1tvq0kuam"]
 
 [ext_resource type="Script" uid="uid://1u6phy4xlkeq" path="res://scripts/trash.gd" id="1_rvlyg"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="2_d64m0"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="3_vbrme"]
 [ext_resource type="PackedScene" uid="uid://da2qgxxwwitl6" path="res://addons/godot-xr-tools/objects/highlight/highlight_ring.tscn" id="4_85nl5"]
+[ext_resource type="Texture2D" uid="uid://drmlwvkkrtjm4" path="res://assets/images/Glass-symbol.png" id="5_d64m0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o55v2"]
 resource_name = "green_glass_bottle"
@@ -52,6 +53,8 @@ collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_rvlyg")
 material_type = 2
+label_icon = ExtResource("5_d64m0")
+second_hand_grab = 1
 
 [node name="Object_13" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_h0kgy")
@@ -61,9 +64,17 @@ skeleton = NodePath("")
 shape = SubResource("ConvexPolygonShape3D_0lvw8")
 
 [node name="GrabPointHandRight" parent="." instance=ExtResource("2_d64m0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4503164e-05, 0.051050372, -0.19284055)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.026085109, 0.051050372, -0.21730456)
 
 [node name="GrabPointHandLeft" parent="." instance=ExtResource("3_vbrme")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.059381783, -0.19745915)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017660707, 0.059381783, -0.22192317)
 
 [node name="HighlightRing" parent="." instance=ExtResource("4_85nl5")]
+
+[node name="Label_Icon" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.042290516, 0, 0)
+offset = Vector2(0, -100)
+flip_h = true
+pixel_size = 0.0007
+axis = 0
+texture = ExtResource("5_d64m0")
