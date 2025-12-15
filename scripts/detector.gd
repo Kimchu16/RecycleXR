@@ -13,7 +13,6 @@ func _ready():
 	body_entered.connect(_on_body_entered)
 
 func _on_body_entered(body):
-	print("Collision detected with:", body.name)
 	
 	if not body.is_in_group("trash"):
 		return

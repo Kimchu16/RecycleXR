@@ -26,6 +26,7 @@ func spawn_trash_at(spawn_point: Node3D):
 	trash.global_position = spawn_point.global_position
 
 	trash.sorted_correct.connect(on_trash_sorted)
+	trash.sorted_incorrect.connect(on_trash_sorted)
 
 func on_trash_sorted():
 	sorted_count += 1
