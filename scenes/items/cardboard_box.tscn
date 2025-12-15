@@ -1,4 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://chtwhny4mkwx2"]
+[gd_scene load_steps=9 format=4 uid="uid://dtbln0xscmcqv"]
+
+[ext_resource type="Script" uid="uid://1u6phy4xlkeq" path="res://scripts/trash.gd" id="1_7omcs"]
+[ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="2_j10mb"]
+[ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="3_svsjb"]
+[ext_resource type="PackedScene" uid="uid://da2qgxxwwitl6" path="res://addons/godot-xr-tools/objects/highlight/highlight_ring.tscn" id="4_rcbfd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ipx03"]
 resource_name = "light_brown"
@@ -37,8 +42,30 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_d1k8s")
 
-[node name="cardboard_box_2" type="Node3D"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5d1ks"]
+points = PackedVector3Array(-0.25, -0.25, -0.25, 0.25, -0.25, -0.25, -0.25, -0.25, 0.25, -0.25, 0.24998838, -0.25, 0.25, -0.25, 0.25, 0.25, 0.24998838, -0.25, -0.25, 0.24998838, 0.25, -0.24721026, 0.2579478, -0.24119028, -0.04718089, 0.4079997, -0.24119028, 0.048208684, 0.45707107, -0.24119028, 0.25, 0.24998838, 0.25, 0.24818912, 0.257048, -0.24119028, 0.048208684, 0.45707107, 0.24114135, -0.04718089, 0.4079997, 0.24114135, -0.24721026, 0.2579478, 0.24114135, 0.24818912, 0.257048, 0.24114135)
+
+[node name="cardboard_box_2" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_7omcs")
+second_hand_grab = 1
 
 [node name="Object_11" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("ArrayMesh_bkdsv")
 skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_5d1ks")
+
+[node name="GrabPointHandRight" parent="." instance=ExtResource("2_j10mb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4503164e-05, 0.051050372, -0.11024924)
+visible = true
+
+[node name="GrabPointHandLeft" parent="." instance=ExtResource("3_svsjb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.059381783, -0.11486784)
+visible = true
+
+[node name="HighlightRing" parent="." instance=ExtResource("4_rcbfd")]

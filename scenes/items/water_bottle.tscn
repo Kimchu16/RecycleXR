@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=4 uid="uid://c6q4efrudxqpb"]
 
-[ext_resource type="Script" uid="uid://1u6phy4xlkeq" path="res://scripts/water_bottle.gd" id="1_4elld"]
+[ext_resource type="Script" uid="uid://1u6phy4xlkeq" path="res://scripts/trash.gd" id="1_4elld"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="2_qlnde"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="3_rhegp"]
 [ext_resource type="PackedScene" uid="uid://da2qgxxwwitl6" path="res://addons/godot-xr-tools/objects/highlight/highlight_ring.tscn" id="4_rhegp"]
@@ -92,26 +92,27 @@ height = 0.40751648
 collision_layer = 4
 collision_mask = 7
 script = ExtResource("1_4elld")
-press_to_hold = false
 second_hand_grab = 1
 metadata/_custom_type_script = "uid://bfrlpbsqg5lqr"
 
 [node name="Object_8" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 mesh = SubResource("ArrayMesh_wkpgc")
 skeleton = NodePath("")
 
 [node name="Object_9" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 mesh = SubResource("ArrayMesh_d2tih")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0037612915, 0)
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.0037612915, 0)
 shape = SubResource("CapsuleShape3D_1dn2m")
 
 [node name="GrabPointHandRight" parent="." instance=ExtResource("3_rhegp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4503164e-05, -0.00040518492, -0.19284055)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4503164e-05, 0.051050372, -0.19284055)
 
 [node name="GrabPointHandLeft" parent="." instance=ExtResource("2_qlnde")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.19745915)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.059381783, -0.19745915)
 
 [node name="HighlightRing" parent="." instance=ExtResource("4_rhegp")]

@@ -1,10 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://bwnmul68dt4rr"]
+[gd_scene load_steps=27 format=3 uid="uid://bwnmul68dt4rr"]
 
 [ext_resource type="PackedScene" uid="uid://tomnlfum1cqm" path="res://assets/models/simple_table_low_poly.glb" id="2_0xm2m"]
 [ext_resource type="Material" uid="uid://ds2dpvbpht0ea" path="res://addons/godot-xr-tools/hands/materials/labglove.tres" id="2_7mycd"]
 [ext_resource type="Material" uid="uid://cdb40djkihelq" path="res://addons/godot-xr-tools/hands/materials/cleaning_glove.tres" id="3_272bh"]
 [ext_resource type="PackedScene" uid="uid://pw0yfigrla5g" path="res://scenes/bins/green_recycle_bin_10.tscn" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://c6q4efrudxqpb" path="res://scenes/items/water_bottle_1.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="4_272bh"]
 [ext_resource type="PackedScene" uid="uid://bh8isvqs258cp" path="res://addons/hand_pose_detector/hand_pose_controller.tscn" id="5_efxa6"]
 [ext_resource type="Script" uid="uid://cpvr2rutp06xo" path="res://addons/hand_pose_detector/hand_pose_action.gd" id="7_dg77c"]
@@ -13,6 +12,9 @@
 [ext_resource type="Script" uid="uid://flof6yq6ri23" path="res://addons/hand_pose_detector/hand_pose_set.gd" id="8_w48qg"]
 [ext_resource type="Script" uid="uid://c862lel4opmi7" path="res://addons/hand_pose_detector/hand_pose_action_map.gd" id="8_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="13_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://dtbln0xscmcqv" path="res://scenes/items/cardboard_box.tscn" id="14_2cqfq"]
+[ext_resource type="PackedScene" uid="uid://bw3yhnjl6fy4m" path="res://scenes/items/jar.tscn" id="15_yaehf"]
+[ext_resource type="PackedScene" uid="uid://c7wqami07vrh2" path="res://scenes/items/plastic_container.tscn" id="17_yaehf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -134,7 +136,7 @@ hand_pose_set = SubResource("Resource_2cqfq")
 tracker = &"/user/hand_pose_controller/left"
 
 [node name="FunctionPickup" parent="XROrigin3D/Controller_Left" instance=ExtResource("4_272bh")]
-grab_collision_mask = 4
+grab_collision_mask = 65540
 ranged_distance = 100.0
 ranged_angle = 45.0
 
@@ -174,22 +176,11 @@ collision_mask = 7
 
 [node name="Trash" type="Node3D" parent="."]
 
-[node name="water_bottle_1" parent="Trash" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6290572, 0.8560804, 0)
-picked_up_layer = 4
+[node name="cardboard_box_2" parent="Trash" instance=ExtResource("14_2cqfq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.79649925, 0.38535237, -0.48451948)
 
-[node name="water_bottle_2" parent="Trash" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.56177884, 0.7701408, 0.38250327)
-picked_up_layer = 4
+[node name="jar_8" parent="Trash" instance=ExtResource("15_yaehf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.87567234, 0.4200859, 0.67200494)
 
-[node name="water_bottle_3" parent="Trash" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5326891, 0.7987827, 0.62861913)
-picked_up_layer = 4
-
-[node name="water_bottle_4" parent="Trash" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(0.9998799, 0, -0.015497903, 0, 1, 0, 0.015497903, 0, 0.9998799, 0.5834871, 0.8947052, 0.18694037)
-picked_up_layer = 4
-
-[node name="water_bottle_5" parent="Trash" instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.61715126, 0.81033486, 0.037714005)
-picked_up_layer = 4
+[node name="plastic_container_6" parent="Trash" instance=ExtResource("17_yaehf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.71573013, 0.37586486, 0)

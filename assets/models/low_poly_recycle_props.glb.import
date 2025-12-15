@@ -39,8 +39,42 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "nodes": {
+"PATH:Sketchfab_model/root/GLTF_SceneRootNode/blue_recycle_bin_9/Object_27": {
+"physics/layer": 4,
+"physics/mask": 7
+},
+"PATH:Sketchfab_model/root/GLTF_SceneRootNode/cardboard_box_2/Object_11": {
+"generate/physics": true,
+"physics/layer": 4,
+"physics/mask": 7,
+"physics/shape_type": 1
+},
+"PATH:Sketchfab_model/root/GLTF_SceneRootNode/glass_bottle_3/Object_13": {
+"generate/physics": true,
+"physics/layer": 4,
+"physics/mask": 7,
+"physics/shape_type": 1
+},
 "PATH:Sketchfab_model/root/GLTF_SceneRootNode/green_recycle_bin_10": {
 "node/node_type": "Node3D"
+},
+"PATH:Sketchfab_model/root/GLTF_SceneRootNode/jar_8/Object_25": {
+"generate/physics": true,
+"physics/layer": 4,
+"physics/mask": 7,
+"physics/shape_type": 1
+},
+"PATH:Sketchfab_model/root/GLTF_SceneRootNode/paper_bag_7/Object_23": {
+"generate/physics": true,
+"physics/layer": 4,
+"physics/mask": 7,
+"physics/shape_type": 1
+},
+"PATH:Sketchfab_model/root/GLTF_SceneRootNode/plastic_container_6/Object_20": {
+"generate/physics": true,
+"physics/layer": 4,
+"physics/mask": 7,
+"physics/shape_type": 1
 }
 }
 }
