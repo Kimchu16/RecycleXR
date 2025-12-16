@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://bwnmul68dt4rr"]
+[gd_scene load_steps=56 format=3 uid="uid://bwnmul68dt4rr"]
 
 [ext_resource type="PackedScene" uid="uid://tomnlfum1cqm" path="res://assets/models/simple_table_low_poly.glb" id="2_0xm2m"]
 [ext_resource type="Material" uid="uid://ds2dpvbpht0ea" path="res://addons/godot-xr-tools/hands/materials/labglove.tres" id="2_7mycd"]
@@ -33,7 +33,10 @@
 [ext_resource type="Texture2D" uid="uid://drmlwvkkrtjm4" path="res://assets/images/Glass-symbol.png" id="29_seu75"]
 [ext_resource type="PackedScene" uid="uid://6o1mmksccuu" path="res://scenes/items/lever_smooth.tscn" id="31_seu75"]
 [ext_resource type="PackedScene" uid="uid://da2qgxxwwitl6" path="res://addons/godot-xr-tools/objects/highlight/highlight_ring.tscn" id="32_htxhm"]
+[ext_resource type="Texture2D" uid="uid://sktd61cabbss" path="res://assets/images/weathered_brown_planks_diff_1k.png" id="33_facbu"]
 [ext_resource type="Script" uid="uid://h2npqchby88m" path="res://scripts/lever_manager.gd" id="33_jq2sk"]
+[ext_resource type="Texture2D" uid="uid://wsogq7l6n1xj" path="res://assets/images/weathered_brown_planks_nor_gl_1k.png" id="34_b1qrp"]
+[ext_resource type="Texture2D" uid="uid://x8olehkk1sch" path="res://assets/images/weathered_brown_planks_rough_1k.png" id="35_come4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -116,7 +119,14 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_d13ii"]
 material = SubResource("StandardMaterial3D_1u8w0")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8e4i"]
+albedo_texture = ExtResource("33_facbu")
+roughness_texture = ExtResource("35_come4")
+normal_enabled = true
+normal_texture = ExtResource("34_b1qrp")
+
 [sub_resource type="BoxMesh" id="BoxMesh_4k2k6"]
+material = SubResource("StandardMaterial3D_h8e4i")
 size = Vector3(1.415, 1.71, 0.275)
 
 [node name="Main" type="Node3D"]
@@ -247,11 +257,26 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.8
 collision_layer = 2
 collision_mask = 7
 
+[node name="Sprite3D" type="Sprite3D" parent="Bins/green_recycle_bin_10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1834743e-08, -0.23074394, 0.2707473)
+pixel_size = 0.003
+texture = ExtResource("28_xuqvo")
+
 [node name="blue_recycle_bin_9" parent="Bins" instance=ExtResource("13_getpj")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.8952446, 0.45855582, 0.7300258)
 
+[node name="Sprite3D" type="Sprite3D" parent="Bins/blue_recycle_bin_9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1834743e-08, -0.23074394, 0.2707473)
+pixel_size = 0.003
+texture = ExtResource("29_seu75")
+
 [node name="yellow_recycle_bin_11" parent="Bins" instance=ExtResource("14_ryguw")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.8952446, 0.45855582, -0.7668114)
+
+[node name="Sprite3D" type="Sprite3D" parent="Bins/yellow_recycle_bin_11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1834743e-08, -0.23074394, 0.2707473)
+pixel_size = 0.003
+texture = ExtResource("28_kq58d")
 
 [node name="Trash" type="Node3D" parent="."]
 
@@ -376,7 +401,7 @@ mesh = SubResource("BoxMesh_4k2k6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42774335, 0.9056682, -0.71732295)
 
 [node name="InteractableLever" parent="Levers/Platsic_Lever/LeverOrigin" index="0"]
-label_id = null
+label_id = 0
 default_position = -45.0
 
 [node name="InteractableHandle" parent="Levers/Platsic_Lever/LeverOrigin/InteractableLever/HandleOrigin" index="0"]
@@ -407,6 +432,21 @@ default_position = -45.0
 collision_layer = 4
 
 [node name="HighlightRing" parent="Levers/Paper_Lever/LeverOrigin/InteractableLever/HandleOrigin/InteractableHandle" index="3" instance=ExtResource("32_htxhm")]
+
+[node name="Plastic_Icon" type="Sprite3D" parent="Levers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42183602, 1.4561352, -0.7594601)
+pixel_size = 0.004
+texture = ExtResource("28_kq58d")
+
+[node name="Glass_Icon" type="Sprite3D" parent="Levers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0045027137, 1.4561352, -0.7594601)
+pixel_size = 0.004
+texture = ExtResource("29_seu75")
+
+[node name="Paper_Icon" type="Sprite3D" parent="Levers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4009717, 1.4561352, -0.7594601)
+pixel_size = 0.004
+texture = ExtResource("28_xuqvo")
 
 [editable path="Levers/Platsic_Lever"]
 [editable path="Levers/Glass_Lever"]

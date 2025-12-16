@@ -1,8 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://6o1mmksccuu"]
+[gd_scene load_steps=25 format=3 uid="uid://6o1mmksccuu"]
 
+[ext_resource type="Texture2D" uid="uid://bun70wcipcec0" path="res://assets/models/simple_table_low_poly_0.jpg" id="1_x72lh"]
 [ext_resource type="Script" uid="uid://c8gx2wc7hsxf5" path="res://addons/godot-xr-tools/interactables/interactable_hinge.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://epde7a5rqhbp" path="res://assets/images/blue_metal_plate_diff_1k.png" id="3_rrotg"]
 [ext_resource type="Script" uid="uid://dlojnwxo25bky" path="res://addons/godot-xr-tools/interactables/interactable_handle.gd" id="4"]
+[ext_resource type="Texture2D" uid="uid://klf13dhy8ghp" path="res://assets/images/blue_metal_plate_nor_gl_1k.png" id="4_17474"]
 [ext_resource type="PackedScene" uid="uid://c25yxb0vt53vc" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_left.tscn" id="4_psbg5"]
+[ext_resource type="Texture2D" uid="uid://c0xweft0jcomv" path="res://assets/images/blue_metal_plate_rough_1k.png" id="4_spw61"]
 [ext_resource type="Animation" uid="uid://db62hs5s4n2b3" path="res://addons/godot-xr-tools/hands/animations/left/Grip 4.res" id="5_ha7r4"]
 [ext_resource type="Script" uid="uid://dvobm6vcfnqe8" path="res://addons/godot-xr-tools/hands/poses/hand_pose_settings.gd" id="6_gg8v3"]
 [ext_resource type="PackedScene" uid="uid://ctw7nbntd5pcj" path="res://addons/godot-xr-tools/objects/grab_points/grab_point_hand_right.tscn" id="7_xphfh"]
@@ -12,7 +16,11 @@
 [sub_resource type="BoxShape3D" id="1"]
 size = Vector3(0.2, 0.6, 0.1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vdn3"]
+albedo_texture = ExtResource("1_x72lh")
+
 [sub_resource type="BoxMesh" id="2"]
+material = SubResource("StandardMaterial3D_5vdn3")
 size = Vector3(0.2, 0.6, 0.1)
 
 [sub_resource type="BoxShape3D" id="3"]
@@ -21,10 +29,24 @@ size = Vector3(0.04, 0.04, 0.2)
 [sub_resource type="SphereShape3D" id="4"]
 radius = 0.06
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rrotg"]
+albedo_texture = ExtResource("3_rrotg")
+roughness_texture = ExtResource("4_spw61")
+normal_enabled = true
+normal_texture = ExtResource("4_17474")
+
 [sub_resource type="BoxMesh" id="5"]
+material = SubResource("StandardMaterial3D_rrotg")
 size = Vector3(0.04, 0.04, 0.2)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spw61"]
+albedo_texture = ExtResource("3_rrotg")
+roughness_texture = ExtResource("4_spw61")
+normal_enabled = true
+normal_texture = ExtResource("4_17474")
+
 [sub_resource type="SphereMesh" id="6"]
+material = SubResource("StandardMaterial3D_spw61")
 radius = 0.06
 height = 0.12
 radial_segments = 16
@@ -59,6 +81,7 @@ transform = Transform3D(1, -1.06581e-14, 0, 1.06581e-14, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="InteractableLever" type="Node3D" parent="LeverOrigin"]
 script = ExtResource("2")
+label_id = null
 
 [node name="HingeBody" type="StaticBody3D" parent="LeverOrigin/InteractableLever"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.1)
