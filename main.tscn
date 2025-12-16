@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bwnmul68dt4rr"]
+[gd_scene load_steps=50 format=3 uid="uid://bwnmul68dt4rr"]
 
 [ext_resource type="PackedScene" uid="uid://tomnlfum1cqm" path="res://assets/models/simple_table_low_poly.glb" id="2_0xm2m"]
 [ext_resource type="Material" uid="uid://ds2dpvbpht0ea" path="res://addons/godot-xr-tools/hands/materials/labglove.tres" id="2_7mycd"]
@@ -30,6 +30,9 @@
 [ext_resource type="Texture2D" uid="uid://cle5g5a3mtxrc" path="res://assets/images/PET-symbol.png" id="28_kq58d"]
 [ext_resource type="Texture2D" uid="uid://5w2sxlyv8lmf" path="res://assets/images/FSC-symbol.png" id="28_xuqvo"]
 [ext_resource type="Texture2D" uid="uid://drmlwvkkrtjm4" path="res://assets/images/Glass-symbol.png" id="29_seu75"]
+[ext_resource type="PackedScene" uid="uid://6o1mmksccuu" path="res://scenes/items/lever_smooth.tscn" id="31_seu75"]
+[ext_resource type="PackedScene" uid="uid://da2qgxxwwitl6" path="res://addons/godot-xr-tools/objects/highlight/highlight_ring.tscn" id="32_htxhm"]
+[ext_resource type="Script" uid="uid://h2npqchby88m" path="res://lever_manager.gd" id="33_jq2sk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -315,20 +318,34 @@ spawn_particles = [NodePath("../Trash/SpawnPoint/SpawnParticle"), NodePath("../T
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0972916, 0, -0.5007589)
 stream = ExtResource("23_d13ii")
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("27_a6jrf")]
+[node name="Billboard" parent="." instance=ExtResource("27_a6jrf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09280783, 1.0079195, -1.7302761)
 
-[node name="plastic" type="Sprite3D" parent="Sketchfab_Scene"]
+[node name="plastic" type="Sprite3D" parent="Billboard"]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.47528082, 0.34739232, 0.54380107)
 pixel_size = 0.03
 texture = ExtResource("28_kq58d")
 
-[node name="glass" type="Sprite3D" parent="Sketchfab_Scene"]
+[node name="glass" type="Sprite3D" parent="Billboard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35407162, 0.54380107)
 pixel_size = 0.003
 texture = ExtResource("29_seu75")
 
-[node name="paper" type="Sprite3D" parent="Sketchfab_Scene"]
+[node name="paper" type="Sprite3D" parent="Billboard"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45868498, 0.35809588, 0.54380107)
 pixel_size = 0.003
 texture = ExtResource("28_xuqvo")
+
+[node name="LeverSmooth" parent="." instance=ExtResource("31_seu75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9056682, -0.71732295)
+
+[node name="InteractableHandle" parent="LeverSmooth/LeverOrigin/InteractableLever/HandleOrigin" index="0"]
+collision_layer = 4
+
+[node name="HighlightRing" parent="LeverSmooth/LeverOrigin/InteractableLever/HandleOrigin/InteractableHandle" index="3" instance=ExtResource("32_htxhm")]
+
+[node name="LeverManager" type="Node" parent="." node_paths=PackedStringArray("hinge")]
+script = ExtResource("33_jq2sk")
+hinge = NodePath("../LeverSmooth/LeverOrigin/InteractableLever")
+
+[editable path="LeverSmooth"]
