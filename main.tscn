@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bwnmul68dt4rr"]
+[gd_scene load_steps=39 format=3 uid="uid://bwnmul68dt4rr"]
 
 [ext_resource type="PackedScene" uid="uid://tomnlfum1cqm" path="res://assets/models/simple_table_low_poly.glb" id="2_0xm2m"]
 [ext_resource type="Material" uid="uid://ds2dpvbpht0ea" path="res://addons/godot-xr-tools/hands/materials/labglove.tres" id="2_7mycd"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dtbln0xscmcqv" path="res://scenes/items/cardboard_box.tscn" id="14_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://roguu7colgh2" path="res://scenes/bins/yellow_recycle_bin_11.tscn" id="14_ryguw"]
 [ext_resource type="PackedScene" uid="uid://h7r1tvq0kuam" path="res://scenes/items/glass_bottle.tscn" id="15_cegan"]
+[ext_resource type="Texture2D" uid="uid://b1sb0xnb3iq0i" path="res://assets/images/cloud.png" id="15_ryguw"]
 [ext_resource type="PackedScene" uid="uid://bw3yhnjl6fy4m" path="res://scenes/items/jar.tscn" id="15_yaehf"]
 [ext_resource type="PackedScene" uid="uid://c71uvwn47h2ov" path="res://scenes/items/paper_bag.tscn" id="16_074og"]
 [ext_resource type="PackedScene" uid="uid://c7wqami07vrh2" path="res://scenes/items/plastic_container.tscn" id="17_yaehf"]
@@ -67,6 +68,37 @@ size = Vector2(5, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1bvp3"]
 size = Vector3(0.9373779, 0.6586609, 2.0043945)
+
+[sub_resource type="Curve" id="Curve_ryguw"]
+_data = [Vector2(0, 0.015510917), 0.0, 0.0, 0, 0, Vector2(0.026252981, 1), 0.0, 0.0, 0, 0, Vector2(0.99045354, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_d13ii"]
+curve = SubResource("Curve_ryguw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ryguw"]
+emission_shape = 1
+emission_sphere_radius = 0.4
+direction = Vector3(1, -1, 0)
+flatness = 1.0
+initial_velocity_min = 0.19999999
+initial_velocity_max = 0.39999998
+gravity = Vector3(0, 1, 0)
+scale_min = 0.79999995
+scale_curve = SubResource("CurveTexture_d13ii")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1u8w0"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("15_ryguw")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_d13ii"]
+material = SubResource("StandardMaterial3D_1u8w0")
 
 [node name="Main" type="Node3D"]
 
@@ -192,20 +224,68 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.8
 [node name="SpawnPoint" type="Node3D" parent="Trash"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7075006, 0.4849825, 0)
 
+[node name="SpawnParticle" type="GPUParticles3D" parent="Trash/SpawnPoint"]
+emitting = false
+amount = 12
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ryguw")
+draw_pass_1 = SubResource("QuadMesh_d13ii")
+
 [node name="SpawnPoint2" type="Node3D" parent="Trash"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7075006, 0.4849825, -0.4160937)
+
+[node name="SpawnParticle" type="GPUParticles3D" parent="Trash/SpawnPoint2"]
+emitting = false
+amount = 12
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ryguw")
+draw_pass_1 = SubResource("QuadMesh_d13ii")
 
 [node name="SpawnPoint3" type="Node3D" parent="Trash"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7075006, 0.4849825, 0.32756728)
 
+[node name="SpawnParticle" type="GPUParticles3D" parent="Trash/SpawnPoint3"]
+emitting = false
+amount = 12
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ryguw")
+draw_pass_1 = SubResource("QuadMesh_d13ii")
+
 [node name="SpawnPoint4" type="Node3D" parent="Trash"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1131673, 0.4849825, 0.32756728)
+
+[node name="SpawnParticle" type="GPUParticles3D" parent="Trash/SpawnPoint4"]
+emitting = false
+amount = 12
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ryguw")
+draw_pass_1 = SubResource("QuadMesh_d13ii")
 
 [node name="SpawnPoint5" type="Node3D" parent="Trash"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1131673, 0.4849825, -0.08123058)
 
+[node name="SpawnParticle" type="GPUParticles3D" parent="Trash/SpawnPoint5"]
+emitting = false
+amount = 12
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ryguw")
+draw_pass_1 = SubResource("QuadMesh_d13ii")
+
 [node name="SpawnPoint6" type="Node3D" parent="Trash"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1131673, 0.4849825, -0.5585885)
+
+[node name="SpawnParticle" type="GPUParticles3D" parent="Trash/SpawnPoint6"]
+emitting = false
+amount = 12
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ryguw")
+draw_pass_1 = SubResource("QuadMesh_d13ii")
 
 [node name="TrashSpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_points")]
 script = ExtResource("13_w48qg")
