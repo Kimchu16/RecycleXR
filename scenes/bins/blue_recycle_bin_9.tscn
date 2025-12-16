@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://b42eurmxw7s01"]
+[gd_scene load_steps=16 format=4 uid="uid://b42eurmxw7s01"]
 
 [ext_resource type="Texture2D" uid="uid://dx0bowdegulx8" path="res://assets/models/low_poly_recycle_props_1.png" id="1_ei6mk"]
 [ext_resource type="Script" uid="uid://brohn7hifkvg8" path="res://scripts/detector.gd" id="2_38coj"]
@@ -73,6 +73,29 @@ radius = 0.02
 height = 4.0
 radial_segments = 4
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d0umo"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+flatness = 0.5
+initial_velocity_min = 1.5
+initial_velocity_max = 1.5
+gravity = Vector3(0, 5, 0)
+scale_min = 0.049999997
+scale_max = 0.049999997
+color = Color(0.12156863, 0.9411765, 0.14901961, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8eix"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(1, 0, 0.05882353, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_2lvkg"]
+material = SubResource("StandardMaterial3D_o8eix")
+radius = 0.02
+height = 4.0
+radial_segments = 4
+
 [node name="blue_recycle_bin_9" type="StaticBody3D"]
 
 [node name="Object_27" type="MeshInstance3D" parent="."]
@@ -115,5 +138,21 @@ draw_pass_1 = SubResource("SphereMesh_d0umo")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38268948, 0.11864281)
 visible = false
 light_color = Color(0.44313726, 1, 0.1254902, 1)
+light_energy = 16.0
+omni_range = 0.3
+
+[node name="ParticlesIncorrect" type="GPUParticles3D" parent="Detector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1311639, 0.14148687)
+emitting = false
+amount = 20
+lifetime = 0.3
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_d0umo")
+draw_pass_1 = SubResource("SphereMesh_2lvkg")
+
+[node name="GlowIncorrect" type="OmniLight3D" parent="Detector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38268948, 0.11864281)
+visible = false
+light_color = Color(1, 0.1882353, 0.1254902, 1)
 light_energy = 16.0
 omni_range = 0.3

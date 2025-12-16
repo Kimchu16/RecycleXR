@@ -65,7 +65,7 @@ color = Color(0.12156863, 0.9411765, 0.14901961, 1)
 transparency = 1
 blend_mode = 1
 shading_mode = 0
-albedo_color = Color(0.17254902, 1, 0.05882353, 1)
+albedo_color = Color(1, 0, 0.05882353, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_deixs"]
 material = SubResource("StandardMaterial3D_wvun3")
@@ -117,5 +117,21 @@ draw_pass_1 = SubResource("SphereMesh_deixs")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09957117, 0.11864281)
 visible = false
 light_color = Color(0.44313726, 1, 0.1254902, 1)
+light_energy = 16.0
+omni_range = 0.3
+
+[node name="ParticlesIncorrect" type="GPUParticles3D" parent="Detector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07498872, 0.14148687)
+emitting = false
+amount = 20
+lifetime = 0.3
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_wvun3")
+draw_pass_1 = SubResource("SphereMesh_deixs")
+
+[node name="GlowIncorrect" type="OmniLight3D" parent="Detector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09957117, 0.11864281)
+visible = false
+light_color = Color(1, 0.1882353, 0.1254902, 1)
 light_energy = 16.0
 omni_range = 0.3

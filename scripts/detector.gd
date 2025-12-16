@@ -4,6 +4,9 @@ extends Area3D
 @onready var incorrect_audio : AudioStreamPlayer3D = $AudioIncorrect
 @onready var correct_particles : GPUParticles3D = $ParticlesCorrect
 @onready var correct_glow : OmniLight3D = $GlowCorrect
+@onready var incorrect_particles : GPUParticles3D = $ParticlesIncorrect
+@onready var incorrect_glow : OmniLight3D = $GlowIncorrect
+
 @export var accepts_material : Array[MaterialType]
 
 enum MaterialType {
@@ -16,9 +19,11 @@ enum MaterialType {
 func _ready():
 	body_entered.connect(_on_body_entered)
 	correct_particles.finished.connect(_on_particles_finished)
+	incorrect_particles.finished.connect(_on_particles_finished)
 
 func _on_particles_finished():
 	correct_glow.visible = false
+	incorrect_glow.visible = false
 
 func _on_body_entered(body):
 	if not body.is_in_group("trash"):
@@ -30,5 +35,7 @@ func _on_body_entered(body):
 		correct_audio.play()
 		body.on_sorted_correctly()
 	else:
+		incorrect_glow.visible = true
+		incorrect_particles.restart()
 		incorrect_audio.play()
 		body.on_sorted_incorrectly()
