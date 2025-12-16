@@ -2,6 +2,7 @@ extends Node
 
 @export var spawn_points : Array[Node3D]
 @export var trash_scenes : Array[PackedScene]
+@export var spawn_particles : Array[GPUParticles3D]
 
 var sorted_count := 0
 const MAX_TRASH := 6
@@ -14,9 +15,11 @@ func spawn_all_trash():
 
 	for point in spawn_points:
 		spawn_trash_at(point)
+		for particle in spawn_particles:
+			particle.restart()
 
 func spawn_trash_at(spawn_point: Node3D):
-	if spawn_point.get_child_count() > 0:
+	if spawn_point.get_child_count() > 1:
 		return
 
 	var trash_scene = trash_scenes.pick_random()

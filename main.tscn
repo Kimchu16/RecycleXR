@@ -227,6 +227,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7075006, 0.4849825, 0)
 [node name="SpawnParticle" type="GPUParticles3D" parent="Trash/SpawnPoint"]
 emitting = false
 amount = 12
+lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_ryguw")
@@ -238,6 +239,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7075006, 0.4849825, -0.4160
 [node name="SpawnParticle" type="GPUParticles3D" parent="Trash/SpawnPoint2"]
 emitting = false
 amount = 12
+lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_ryguw")
@@ -249,6 +251,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7075006, 0.4849825, 0.32756
 [node name="SpawnParticle" type="GPUParticles3D" parent="Trash/SpawnPoint3"]
 emitting = false
 amount = 12
+lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_ryguw")
@@ -260,6 +263,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1131673, 0.4849825, 0.32756
 [node name="SpawnParticle" type="GPUParticles3D" parent="Trash/SpawnPoint4"]
 emitting = false
 amount = 12
+lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_ryguw")
@@ -271,6 +275,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1131673, 0.4849825, -0.0812
 [node name="SpawnParticle" type="GPUParticles3D" parent="Trash/SpawnPoint5"]
 emitting = false
 amount = 12
+lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_ryguw")
@@ -282,12 +287,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1131673, 0.4849825, -0.5585
 [node name="SpawnParticle" type="GPUParticles3D" parent="Trash/SpawnPoint6"]
 emitting = false
 amount = 12
+lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_ryguw")
 draw_pass_1 = SubResource("QuadMesh_d13ii")
 
-[node name="TrashSpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_points")]
+[node name="TrashSpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_points", "spawn_particles")]
 script = ExtResource("13_w48qg")
 spawn_points = [NodePath("../Trash/SpawnPoint"), NodePath("../Trash/SpawnPoint2"), NodePath("../Trash/SpawnPoint3"), NodePath("../Trash/SpawnPoint4"), NodePath("../Trash/SpawnPoint5"), NodePath("../Trash/SpawnPoint6")]
 trash_scenes = Array[PackedScene]([ExtResource("14_2cqfq"), ExtResource("15_cegan"), ExtResource("15_yaehf"), ExtResource("16_074og"), ExtResource("17_yaehf"), ExtResource("4_1bvp3")])
+spawn_particles = [NodePath("../Trash/SpawnPoint/SpawnParticle"), NodePath("../Trash/SpawnPoint2/SpawnParticle"), NodePath("../Trash/SpawnPoint3/SpawnParticle"), NodePath("../Trash/SpawnPoint4/SpawnParticle"), NodePath("../Trash/SpawnPoint5/SpawnParticle"), NodePath("../Trash/SpawnPoint6/SpawnParticle")]
