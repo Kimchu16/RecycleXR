@@ -4,6 +4,8 @@ extends Node
 @export var trash_scenes : Array[PackedScene]
 @export var spawn_particles : Array[GPUParticles3D]
 
+@onready var spawn_audio : AudioStreamPlayer3D = $SpawnAudio
+
 var sorted_count := 0
 const MAX_TRASH := 6
 
@@ -12,7 +14,7 @@ func _ready():
 
 func spawn_all_trash():
 	sorted_count = 0
-
+	spawn_audio.play()
 	for point in spawn_points:
 		spawn_trash_at(point)
 		for particle in spawn_particles:
