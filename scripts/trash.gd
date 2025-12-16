@@ -36,6 +36,6 @@ func on_sorted_correctly():
 	queue_free()
 
 func on_sorted_incorrectly():
-	emit_signal("sorted_incorrect") # Use later for feedback fx
+	emit_signal("sorted_incorrect")
 	print("Wrong")
 	queue_free()

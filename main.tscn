@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://bwnmul68dt4rr"]
+[gd_scene load_steps=52 format=3 uid="uid://bwnmul68dt4rr"]
 
 [ext_resource type="PackedScene" uid="uid://tomnlfum1cqm" path="res://assets/models/simple_table_low_poly.glb" id="2_0xm2m"]
 [ext_resource type="Material" uid="uid://ds2dpvbpht0ea" path="res://addons/godot-xr-tools/hands/materials/labglove.tres" id="2_7mycd"]
@@ -29,10 +29,11 @@
 [ext_resource type="PackedScene" uid="uid://cpalkacywolut" path="res://assets/models/state_park_sign.glb" id="27_a6jrf"]
 [ext_resource type="Texture2D" uid="uid://cle5g5a3mtxrc" path="res://assets/images/PET-symbol.png" id="28_kq58d"]
 [ext_resource type="Texture2D" uid="uid://5w2sxlyv8lmf" path="res://assets/images/FSC-symbol.png" id="28_xuqvo"]
+[ext_resource type="Script" uid="uid://dhy6kacbutr6o" path="res://scripts/billboard.gd" id="29_4k2k6"]
 [ext_resource type="Texture2D" uid="uid://drmlwvkkrtjm4" path="res://assets/images/Glass-symbol.png" id="29_seu75"]
 [ext_resource type="PackedScene" uid="uid://6o1mmksccuu" path="res://scenes/items/lever_smooth.tscn" id="31_seu75"]
 [ext_resource type="PackedScene" uid="uid://da2qgxxwwitl6" path="res://addons/godot-xr-tools/objects/highlight/highlight_ring.tscn" id="32_htxhm"]
-[ext_resource type="Script" uid="uid://h2npqchby88m" path="res://lever_manager.gd" id="33_jq2sk"]
+[ext_resource type="Script" uid="uid://h2npqchby88m" path="res://scripts/lever_manager.gd" id="33_jq2sk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -115,10 +116,28 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_d13ii"]
 material = SubResource("StandardMaterial3D_1u8w0")
 
+[sub_resource type="BoxMesh" id="BoxMesh_4k2k6"]
+size = Vector3(1.415, 1.71, 0.275)
+
 [node name="Main" type="Node3D"]
 
 [node name="StartXR" parent="." instance=ExtResource("13_ycdy4")]
 enable_passthrough = true
+
+[node name="TrashSpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_points", "spawn_particles")]
+script = ExtResource("13_w48qg")
+spawn_points = [NodePath("../Trash/SpawnPoint"), NodePath("../Trash/SpawnPoint2"), NodePath("../Trash/SpawnPoint3"), NodePath("../Trash/SpawnPoint4"), NodePath("../Trash/SpawnPoint5"), NodePath("../Trash/SpawnPoint6")]
+trash_scenes = Array[PackedScene]([ExtResource("14_2cqfq"), ExtResource("15_cegan"), ExtResource("15_yaehf"), ExtResource("16_074og"), ExtResource("17_yaehf"), ExtResource("4_1bvp3")])
+spawn_particles = [NodePath("../Trash/SpawnPoint/SpawnParticle"), NodePath("../Trash/SpawnPoint2/SpawnParticle"), NodePath("../Trash/SpawnPoint3/SpawnParticle"), NodePath("../Trash/SpawnPoint4/SpawnParticle"), NodePath("../Trash/SpawnPoint5/SpawnParticle"), NodePath("../Trash/SpawnPoint6/SpawnParticle")]
+
+[node name="SpawnAudio" type="AudioStreamPlayer3D" parent="TrashSpawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0972916, 0, -0.5007589)
+stream = ExtResource("23_d13ii")
+
+[node name="LeverManager" type="Node" parent="." node_paths=PackedStringArray("levers", "billboard")]
+script = ExtResource("33_jq2sk")
+levers = [NodePath("../Levers/Platsic_Lever/LeverOrigin/InteractableLever"), NodePath("../Levers/Glass_Lever/LeverOrigin/InteractableLever"), NodePath("../Levers/Paper_Lever/LeverOrigin/InteractableLever")]
+billboard = NodePath("../Billboard")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -308,44 +327,87 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_ryguw")
 draw_pass_1 = SubResource("QuadMesh_d13ii")
 
-[node name="TrashSpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_points", "spawn_particles")]
-script = ExtResource("13_w48qg")
-spawn_points = [NodePath("../Trash/SpawnPoint"), NodePath("../Trash/SpawnPoint2"), NodePath("../Trash/SpawnPoint3"), NodePath("../Trash/SpawnPoint4"), NodePath("../Trash/SpawnPoint5"), NodePath("../Trash/SpawnPoint6")]
-trash_scenes = Array[PackedScene]([ExtResource("14_2cqfq"), ExtResource("15_cegan"), ExtResource("15_yaehf"), ExtResource("16_074og"), ExtResource("17_yaehf"), ExtResource("4_1bvp3")])
-spawn_particles = [NodePath("../Trash/SpawnPoint/SpawnParticle"), NodePath("../Trash/SpawnPoint2/SpawnParticle"), NodePath("../Trash/SpawnPoint3/SpawnParticle"), NodePath("../Trash/SpawnPoint4/SpawnParticle"), NodePath("../Trash/SpawnPoint5/SpawnParticle"), NodePath("../Trash/SpawnPoint6/SpawnParticle")]
+[node name="Billboard" parent="." node_paths=PackedStringArray("label_texts") instance=ExtResource("27_a6jrf")]
+transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, 2.884224, 1.1256483, -0.062021434)
+script = ExtResource("29_4k2k6")
+label_textures = Array[Texture2D]([ExtResource("28_kq58d"), ExtResource("29_seu75"), ExtResource("28_xuqvo")])
+label_texts = [NodePath("Plastic_Label3D"), NodePath("Glass_Label3D"), NodePath("Paper_Label3D")]
 
-[node name="SpawnAudio" type="AudioStreamPlayer3D" parent="TrashSpawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0972916, 0, -0.5007589)
-stream = ExtResource("23_d13ii")
-
-[node name="Billboard" parent="." instance=ExtResource("27_a6jrf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09280783, 1.0079195, -1.7302761)
-
-[node name="plastic" type="Sprite3D" parent="Billboard"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.47528082, 0.34739232, 0.54380107)
+[node name="Display" type="Sprite3D" parent="Billboard"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.72583604, 0.004722357, 0.5733557)
 pixel_size = 0.03
 texture = ExtResource("28_kq58d")
 
-[node name="glass" type="Sprite3D" parent="Billboard"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35407162, 0.54380107)
-pixel_size = 0.003
-texture = ExtResource("29_seu75")
+[node name="Plastic_Label3D" type="Label3D" parent="Billboard"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.007558342, 0.0914278, 0.5574546)
+text = "These identify the type of plastic resin used to make the item by providing a 'Resin Identification Code'. It is represented with a 'chasing arrows' symbol surrounding a a number between 1 and 7 that defines the resin used.
 
-[node name="paper" type="Sprite3D" parent="Billboard"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45868498, 0.35809588, 0.54380107)
-pixel_size = 0.003
-texture = ExtResource("28_xuqvo")
+1 - PET, used for drinks bottles and some food packaging: Widely recycled
+2 - HDPE, used for cleaning product bottles, milk cartons, etc: Widely recycled
+3 - PVC, used for car parts, window fittings, etc: Not easily recyclable
+4 - LDPE, used for plastic bags and wrapping, etc: Recycle at specialist points
+5 - PP, used for some tubs and trays etc: Widely recycled
+6 - PS, used for takeaway boxes, disposable cutlery, etc: Not easily recyclable
+7 - Other, used for crisp packets, rice packets etc: Recycle at specialist points"
+font_size = 14
+autowrap_mode = 3
 
-[node name="LeverSmooth" parent="." instance=ExtResource("31_seu75")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9056682, -0.71732295)
+[node name="Glass_Label3D" type="Label3D" parent="Billboard"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.007558342, 0.109861016, 0.5574546)
+visible = false
+text = "This symbol asks that you recycle the glass container. Please dispose of glass bottles and jars in a bottle bank, remembering to separate colours, or use your glass household recycling collection if you have one."
+font_size = 30
+autowrap_mode = 3
 
-[node name="InteractableHandle" parent="LeverSmooth/LeverOrigin/InteractableLever/HandleOrigin" index="0"]
+[node name="Paper_Label3D" type="Label3D" parent="Billboard"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.007558342, 0.0914278, 0.5574546)
+visible = false
+text = "The Forest Stewardship Council (FSC) logo identifies wood-based products from well managed forests independently certified in accordance with the rules of the FSC."
+autowrap_mode = 3
+
+[node name="Levers" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.46477994)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Levers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.83718073, -0.900748)
+mesh = SubResource("BoxMesh_4k2k6")
+
+[node name="Platsic_Lever" parent="Levers" instance=ExtResource("31_seu75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42774335, 0.9056682, -0.71732295)
+
+[node name="InteractableLever" parent="Levers/Platsic_Lever/LeverOrigin" index="0"]
+label_id = null
+default_position = -45.0
+
+[node name="InteractableHandle" parent="Levers/Platsic_Lever/LeverOrigin/InteractableLever/HandleOrigin" index="0"]
 collision_layer = 4
 
-[node name="HighlightRing" parent="LeverSmooth/LeverOrigin/InteractableLever/HandleOrigin/InteractableHandle" index="3" instance=ExtResource("32_htxhm")]
+[node name="HighlightRing" parent="Levers/Platsic_Lever/LeverOrigin/InteractableLever/HandleOrigin/InteractableHandle" index="3" instance=ExtResource("32_htxhm")]
 
-[node name="LeverManager" type="Node" parent="." node_paths=PackedStringArray("hinge")]
-script = ExtResource("33_jq2sk")
-hinge = NodePath("../LeverSmooth/LeverOrigin/InteractableLever")
+[node name="Glass_Lever" parent="Levers" instance=ExtResource("31_seu75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9056682, -0.71732295)
 
-[editable path="LeverSmooth"]
+[node name="InteractableLever" parent="Levers/Glass_Lever/LeverOrigin" index="0"]
+label_id = 1
+default_position = -45.0
+
+[node name="InteractableHandle" parent="Levers/Glass_Lever/LeverOrigin/InteractableLever/HandleOrigin" index="0"]
+collision_layer = 4
+
+[node name="HighlightRing" parent="Levers/Glass_Lever/LeverOrigin/InteractableLever/HandleOrigin/InteractableHandle" index="3" instance=ExtResource("32_htxhm")]
+
+[node name="Paper_Lever" parent="Levers" instance=ExtResource("31_seu75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38746777, 0.9056682, -0.71732295)
+
+[node name="InteractableLever" parent="Levers/Paper_Lever/LeverOrigin" index="0"]
+label_id = 2
+default_position = -45.0
+
+[node name="InteractableHandle" parent="Levers/Paper_Lever/LeverOrigin/InteractableLever/HandleOrigin" index="0"]
+collision_layer = 4
+
+[node name="HighlightRing" parent="Levers/Paper_Lever/LeverOrigin/InteractableLever/HandleOrigin/InteractableHandle" index="3" instance=ExtResource("32_htxhm")]
+
+[editable path="Levers/Platsic_Lever"]
+[editable path="Levers/Glass_Lever"]
+[editable path="Levers/Paper_Lever"]
