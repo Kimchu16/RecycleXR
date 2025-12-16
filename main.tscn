@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bwnmul68dt4rr"]
+[gd_scene load_steps=47 format=3 uid="uid://bwnmul68dt4rr"]
 
 [ext_resource type="PackedScene" uid="uid://tomnlfum1cqm" path="res://assets/models/simple_table_low_poly.glb" id="2_0xm2m"]
 [ext_resource type="Material" uid="uid://ds2dpvbpht0ea" path="res://addons/godot-xr-tools/hands/materials/labglove.tres" id="2_7mycd"]
@@ -26,6 +26,10 @@
 [ext_resource type="PackedScene" uid="uid://c71uvwn47h2ov" path="res://scenes/items/paper_bag.tscn" id="16_074og"]
 [ext_resource type="PackedScene" uid="uid://c7wqami07vrh2" path="res://scenes/items/plastic_container.tscn" id="17_yaehf"]
 [ext_resource type="AudioStream" uid="uid://cn6w7cg7ba7qo" path="res://assets/audio/smoke-bomb-6761.mp3" id="23_d13ii"]
+[ext_resource type="PackedScene" uid="uid://cpalkacywolut" path="res://assets/models/state_park_sign.glb" id="27_a6jrf"]
+[ext_resource type="Texture2D" uid="uid://cle5g5a3mtxrc" path="res://assets/images/PET-symbol.png" id="28_kq58d"]
+[ext_resource type="Texture2D" uid="uid://5w2sxlyv8lmf" path="res://assets/images/FSC-symbol.png" id="28_xuqvo"]
+[ext_resource type="Texture2D" uid="uid://drmlwvkkrtjm4" path="res://assets/images/Glass-symbol.png" id="29_seu75"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -310,3 +314,21 @@ spawn_particles = [NodePath("../Trash/SpawnPoint/SpawnParticle"), NodePath("../T
 [node name="SpawnAudio" type="AudioStreamPlayer3D" parent="TrashSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0972916, 0, -0.5007589)
 stream = ExtResource("23_d13ii")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("27_a6jrf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09280783, 1.0079195, -1.7302761)
+
+[node name="plastic" type="Sprite3D" parent="Sketchfab_Scene"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.47528082, 0.34739232, 0.54380107)
+pixel_size = 0.03
+texture = ExtResource("28_kq58d")
+
+[node name="glass" type="Sprite3D" parent="Sketchfab_Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35407162, 0.54380107)
+pixel_size = 0.003
+texture = ExtResource("29_seu75")
+
+[node name="paper" type="Sprite3D" parent="Sketchfab_Scene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45868498, 0.35809588, 0.54380107)
+pixel_size = 0.003
+texture = ExtResource("28_xuqvo")
