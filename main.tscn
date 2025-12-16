@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bwnmul68dt4rr"]
+[gd_scene load_steps=43 format=3 uid="uid://bwnmul68dt4rr"]
 
 [ext_resource type="PackedScene" uid="uid://tomnlfum1cqm" path="res://assets/models/simple_table_low_poly.glb" id="2_0xm2m"]
 [ext_resource type="Material" uid="uid://ds2dpvbpht0ea" path="res://addons/godot-xr-tools/hands/materials/labglove.tres" id="2_7mycd"]
@@ -12,8 +12,11 @@
 [ext_resource type="Resource" uid="uid://dhbqusuodrl3r" path="res://addons/hand_pose_detector/poses/fist.tres" id="8_dg77c"]
 [ext_resource type="Script" uid="uid://flof6yq6ri23" path="res://addons/hand_pose_detector/hand_pose_set.gd" id="8_w48qg"]
 [ext_resource type="Script" uid="uid://c862lel4opmi7" path="res://addons/hand_pose_detector/hand_pose_action_map.gd" id="8_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://cnaqxk8l1taa0" path="res://assets/images/asphalt_02_diff_1k.png" id="11_lswn8"]
+[ext_resource type="Texture2D" uid="uid://bmfgw6q41vawu" path="res://assets/images/asphalt_02_nor_gl_1k.png" id="12_a6jrf"]
 [ext_resource type="PackedScene" uid="uid://b42eurmxw7s01" path="res://scenes/bins/blue_recycle_bin_9.tscn" id="13_getpj"]
 [ext_resource type="Script" uid="uid://cm0fyyqx3ypp6" path="res://scripts/trash_spawner.gd" id="13_w48qg"]
+[ext_resource type="Texture2D" uid="uid://ber3igcoq81kw" path="res://assets/images/asphalt_02_rough_1k.png" id="13_xuqvo"]
 [ext_resource type="PackedScene" uid="uid://clc5dre31iskm" path="res://addons/godot-xr-tools/xr/start_xr.tscn" id="13_ycdy4"]
 [ext_resource type="PackedScene" uid="uid://dtbln0xscmcqv" path="res://scenes/items/cardboard_box.tscn" id="14_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://roguu7colgh2" path="res://scenes/bins/yellow_recycle_bin_11.tscn" id="14_ryguw"]
@@ -59,7 +62,11 @@ poses = Array[ExtResource("7_ycdy4")]([ExtResource("8_dg77c")])
 metadata/_custom_type_script = "uid://flof6yq6ri23"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycdy4"]
-albedo_color = Color(0.18717614, 0.18717614, 0.18717614, 1)
+albedo_color = Color(0.61339027, 0.61339027, 0.61339027, 1)
+albedo_texture = ExtResource("11_lswn8")
+roughness_texture = ExtResource("13_xuqvo")
+normal_enabled = true
+normal_texture = ExtResource("12_a6jrf")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_0xm2m"]
 material = SubResource("StandardMaterial3D_ycdy4")

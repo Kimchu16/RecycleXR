@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://pw0yfigrla5g"]
+[gd_scene load_steps=16 format=4 uid="uid://pw0yfigrla5g"]
 
 [ext_resource type="Texture2D" uid="uid://7pnrbvohgopc" path="res://assets/models/low_poly_recycle_props_2.png" id="1_xaw0s"]
 [ext_resource type="Script" uid="uid://brohn7hifkvg8" path="res://scripts/detector.gd" id="2_eon8o"]
@@ -50,7 +50,7 @@ size = Vector3(0.5118408, 0.7680664, 0.52923584)
 [sub_resource type="BoxShape3D" id="BoxShape3D_eon8o"]
 size = Vector3(0.37457275, 0.047790527, 0.36621094)
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wvun3"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_deixs"]
 particle_flag_align_y = true
 direction = Vector3(0, 1, 0)
 flatness = 0.5
@@ -67,8 +67,31 @@ blend_mode = 1
 shading_mode = 0
 albedo_color = Color(0.17254902, 1, 0.05882353, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_deixs"]
+[sub_resource type="SphereMesh" id="SphereMesh_ote4a"]
 material = SubResource("StandardMaterial3D_wvun3")
+radius = 0.02
+height = 4.0
+radial_segments = 4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wvun3"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+flatness = 0.5
+initial_velocity_min = 1.5
+initial_velocity_max = 1.5
+gravity = Vector3(0, 5, 0)
+scale_min = 0.049999997
+scale_max = 0.049999997
+color = Color(0.12156863, 0.9411765, 0.14901961, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxr43"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(1, 0, 0.05882353, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_deixs"]
+material = SubResource("StandardMaterial3D_cxr43")
 radius = 0.02
 height = 4.0
 radial_segments = 4
@@ -110,8 +133,8 @@ emitting = false
 amount = 20
 lifetime = 0.3
 one_shot = true
-process_material = SubResource("ParticleProcessMaterial_wvun3")
-draw_pass_1 = SubResource("SphereMesh_deixs")
+process_material = SubResource("ParticleProcessMaterial_deixs")
+draw_pass_1 = SubResource("SphereMesh_ote4a")
 
 [node name="GlowCorrect" type="OmniLight3D" parent="Detector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09957117, 0.11864281)
