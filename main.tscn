@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://bwnmul68dt4rr"]
+[gd_scene load_steps=68 format=3 uid="uid://bwnmul68dt4rr"]
 
 [ext_resource type="PackedScene" uid="uid://tomnlfum1cqm" path="res://assets/models/simple_table_low_poly.glb" id="2_0xm2m"]
 [ext_resource type="Material" uid="uid://ds2dpvbpht0ea" path="res://addons/godot-xr-tools/hands/materials/labglove.tres" id="2_7mycd"]
@@ -45,6 +45,7 @@
 [ext_resource type="PackedScene" uid="uid://vctwi1ubybeh" path="res://scenes/items/push_button.tscn" id="41_0cp0l"]
 [ext_resource type="Script" uid="uid://drgmylv3f6vd7" path="res://scripts/push_button.gd" id="42_d2t1y"]
 [ext_resource type="Texture2D" uid="uid://bun70wcipcec0" path="res://assets/models/simple_table_low_poly_0.jpg" id="45_0n3wm"]
+[ext_resource type="AudioStream" uid="uid://ccjb44v0af07f" path="res://assets/audio/ui-button-heavy-button-press-metallic-333826.mp3" id="46_qnost"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -486,19 +487,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81424177, 1.2346493)
 mesh = SubResource("BoxMesh_4k2k6")
 
 [node name="CorrectLabel" type="Label3D" parent="Scoreboard"]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.4228618, 1.0542197)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.414054, 1.0899979)
+pixel_size = 0.003
 text = "10"
 
 [node name="IncorrectLabel" type="Label3D" parent="Scoreboard"]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.1481092, 1.0542197)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.2645751, 1.0899979)
+pixel_size = 0.003
 text = "10"
 
 [node name="TotalLabel" type="Label3D" parent="Scoreboard"]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.895635, 1.0542197)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.1220301, 1.0899979)
+pixel_size = 0.003
 text = "10"
 
 [node name="AccuracyLabel" type="Label3D" parent="Scoreboard"]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.6028772, 1.0896612)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.9606959, 1.0896612)
+pixel_size = 0.003
 text = "10
 "
 
@@ -523,6 +528,9 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PushButton/ButtonStand"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19077204, 0)
 shape = SubResource("CylinderShape3D_gngh3")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="PushButton"]
+stream = ExtResource("46_qnost")
 
 [editable path="Levers/Platsic_Lever"]
 [editable path="Levers/Glass_Lever"]
