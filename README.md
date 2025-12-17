@@ -54,6 +54,8 @@ The project focuses on one core interaction (grabbing and placing objects) withi
 | ScoreboardManager.gd | Self written |
 | lever.gd | Self written |
 | billboard.gd | Self written |
+| hand tracking | OpenXR Vendors Plugin |
+| hand pose detection | GodotXRHandPoseDetector |
 | XRToolsPickable |Godot XR Tools |
 | XRToolsInteractableHinge | Godot XR Tools |
 | XRToolsInteractableAreaButton | Godot XR Tools |
