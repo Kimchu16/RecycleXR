@@ -3,6 +3,7 @@ extends Node
 @export var spawn_points : Array[Node3D]
 @export var trash_scenes : Array[PackedScene]
 @export var spawn_particles : Array[GPUParticles3D]
+@export var scoreboard_manager : Node
 
 @onready var spawn_audio : AudioStreamPlayer3D = $SpawnAudio
 
@@ -32,6 +33,9 @@ func spawn_trash_at(spawn_point: Node3D):
 
 	trash.sorted_correct.connect(on_trash_sorted)
 	trash.sorted_incorrect.connect(on_trash_sorted)
+	
+	trash.sorted_correct.connect(scoreboard_manager.register_correct)
+	trash.sorted_incorrect.connect(scoreboard_manager.register_incorrect)
 
 func on_trash_sorted():
 	sorted_count += 1

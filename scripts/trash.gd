@@ -15,6 +15,8 @@ enum MaterialType {
 
 @onready var icon_sprite : Sprite3D = $Label_Icon
 
+var counted := false
+
 func _ready():
 	super._ready() # Run parent ready function
 	add_to_group("trash")
@@ -31,11 +33,15 @@ func _on_released(pickable, by):
 	icon_sprite.visible = false
 
 func on_sorted_correctly():
+	if counted:
+		return
+	counted = true
 	emit_signal("sorted_correct")
-	
 	queue_free()
 
 func on_sorted_incorrectly():
+	if counted:
+		return
+	counted = true
 	emit_signal("sorted_incorrect")
-	print("Wrong")
 	queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bwnmul68dt4rr"]
+[gd_scene load_steps=59 format=3 uid="uid://bwnmul68dt4rr"]
 
 [ext_resource type="PackedScene" uid="uid://tomnlfum1cqm" path="res://assets/models/simple_table_low_poly.glb" id="2_0xm2m"]
 [ext_resource type="Material" uid="uid://ds2dpvbpht0ea" path="res://addons/godot-xr-tools/hands/materials/labglove.tres" id="2_7mycd"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://bxdk5px2wce0f" path="res://assets/audio/lever.mp3" id="11_b1qrp"]
 [ext_resource type="Texture2D" uid="uid://cnaqxk8l1taa0" path="res://assets/images/asphalt_02_diff_1k.png" id="11_lswn8"]
 [ext_resource type="Texture2D" uid="uid://bmfgw6q41vawu" path="res://assets/images/asphalt_02_nor_gl_1k.png" id="12_a6jrf"]
+[ext_resource type="Script" uid="uid://b2mbwkqhd3rvq" path="res://scripts/scoreboard_manager.gd" id="12_come4"]
 [ext_resource type="PackedScene" uid="uid://b42eurmxw7s01" path="res://scenes/bins/blue_recycle_bin_9.tscn" id="13_getpj"]
 [ext_resource type="Script" uid="uid://cm0fyyqx3ypp6" path="res://scripts/trash_spawner.gd" id="13_w48qg"]
 [ext_resource type="Texture2D" uid="uid://ber3igcoq81kw" path="res://assets/images/asphalt_02_rough_1k.png" id="13_xuqvo"]
@@ -38,6 +39,7 @@
 [ext_resource type="Script" uid="uid://h2npqchby88m" path="res://scripts/lever_manager.gd" id="33_jq2sk"]
 [ext_resource type="Texture2D" uid="uid://wsogq7l6n1xj" path="res://assets/images/weathered_brown_planks_nor_gl_1k.png" id="34_b1qrp"]
 [ext_resource type="Texture2D" uid="uid://x8olehkk1sch" path="res://assets/images/weathered_brown_planks_rough_1k.png" id="35_come4"]
+[ext_resource type="Script" uid="uid://bt82l63vlj878" path="res://scripts/scoreboard.gd" id="40_h8e4i"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -135,11 +137,12 @@ size = Vector3(1.415, 1.71, 0.275)
 [node name="StartXR" parent="." instance=ExtResource("13_ycdy4")]
 enable_passthrough = true
 
-[node name="TrashSpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_points", "spawn_particles")]
+[node name="TrashSpawner" type="Node" parent="." node_paths=PackedStringArray("spawn_points", "spawn_particles", "scoreboard_manager")]
 script = ExtResource("13_w48qg")
 spawn_points = [NodePath("../Trash/SpawnPoint"), NodePath("../Trash/SpawnPoint2"), NodePath("../Trash/SpawnPoint3"), NodePath("../Trash/SpawnPoint4"), NodePath("../Trash/SpawnPoint5"), NodePath("../Trash/SpawnPoint6")]
 trash_scenes = Array[PackedScene]([ExtResource("14_2cqfq"), ExtResource("15_cegan"), ExtResource("15_yaehf"), ExtResource("16_074og"), ExtResource("17_yaehf"), ExtResource("4_1bvp3")])
 spawn_particles = [NodePath("../Trash/SpawnPoint/SpawnParticle"), NodePath("../Trash/SpawnPoint2/SpawnParticle"), NodePath("../Trash/SpawnPoint3/SpawnParticle"), NodePath("../Trash/SpawnPoint4/SpawnParticle"), NodePath("../Trash/SpawnPoint5/SpawnParticle"), NodePath("../Trash/SpawnPoint6/SpawnParticle")]
+scoreboard_manager = NodePath("../ScoreboardManager")
 
 [node name="SpawnAudio" type="AudioStreamPlayer3D" parent="TrashSpawner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0972916, 0, -0.5007589)
@@ -152,6 +155,9 @@ billboard = NodePath("../Billboard")
 
 [node name="LeverMoveAudio" type="AudioStreamPlayer3D" parent="LeverManager"]
 stream = ExtResource("11_b1qrp")
+
+[node name="ScoreboardManager" type="Node" parent="."]
+script = ExtResource("12_come4")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -448,6 +454,31 @@ texture = ExtResource("29_seu75")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4009717, 1.3079735, -0.7594601)
 pixel_size = 0.002
 texture = ExtResource("28_xuqvo")
+
+[node name="Scoreboard" type="Node3D" parent="." node_paths=PackedStringArray("scoreboard_manager")]
+script = ExtResource("40_h8e4i")
+scoreboard_manager = NodePath("../ScoreboardManager")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scoreboard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.81424177, 1.2346493)
+mesh = SubResource("BoxMesh_4k2k6")
+
+[node name="CorrectLabel" type="Label3D" parent="Scoreboard"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.4228618, 1.0542197)
+text = "10"
+
+[node name="IncorrectLabel" type="Label3D" parent="Scoreboard"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.1481092, 1.0542197)
+text = "10"
+
+[node name="TotalLabel" type="Label3D" parent="Scoreboard"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.895635, 1.0542197)
+text = "10"
+
+[node name="AccuracyLabel" type="Label3D" parent="Scoreboard"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.6028772, 1.0896612)
+text = "10
+"
 
 [editable path="Levers/Platsic_Lever"]
 [editable path="Levers/Glass_Lever"]
