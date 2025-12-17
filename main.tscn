@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://bwnmul68dt4rr"]
+[gd_scene load_steps=67 format=3 uid="uid://bwnmul68dt4rr"]
 
 [ext_resource type="PackedScene" uid="uid://tomnlfum1cqm" path="res://assets/models/simple_table_low_poly.glb" id="2_0xm2m"]
 [ext_resource type="Material" uid="uid://ds2dpvbpht0ea" path="res://addons/godot-xr-tools/hands/materials/labglove.tres" id="2_7mycd"]
@@ -44,6 +44,7 @@
 [ext_resource type="Script" uid="uid://bt82l63vlj878" path="res://scripts/scoreboard.gd" id="40_h8e4i"]
 [ext_resource type="PackedScene" uid="uid://vctwi1ubybeh" path="res://scenes/items/push_button.tscn" id="41_0cp0l"]
 [ext_resource type="Script" uid="uid://drgmylv3f6vd7" path="res://scripts/push_button.gd" id="42_d2t1y"]
+[ext_resource type="Texture2D" uid="uid://bun70wcipcec0" path="res://assets/models/simple_table_low_poly_0.jpg" id="45_0n3wm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -135,6 +136,19 @@ normal_texture = ExtResource("34_b1qrp")
 [sub_resource type="BoxMesh" id="BoxMesh_4k2k6"]
 material = SubResource("StandardMaterial3D_h8e4i")
 size = Vector3(1.415, 1.71, 0.275)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qnost"]
+albedo_texture = ExtResource("45_0n3wm")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gngh3"]
+material = SubResource("StandardMaterial3D_qnost")
+top_radius = 0.06
+bottom_radius = 0.06
+height = 0.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gngh3"]
+height = 0.4
+radius = 0.06
 
 [node name="Main" type="Node3D"]
 
@@ -488,12 +502,29 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0
 text = "10
 "
 
-[node name="PushButton" parent="Scoreboard" node_paths=PackedStringArray("scoreboard_manager") instance=ExtResource("41_0cp0l")]
+[node name="PushButton" parent="." node_paths=PackedStringArray("scoreboard_manager") instance=ExtResource("41_0cp0l")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.35422269, 0.7402861, 0.82787555)
 script = ExtResource("42_d2t1y")
-scoreboard_manager = NodePath("../../ScoreboardManager")
+scoreboard_manager = NodePath("../ScoreboardManager")
+
+[node name="Label3D" type="Label3D" parent="PushButton/Button" index="2"]
+transform = Transform3D(-1, 8.742278e-08, 3.821371e-15, 0, -4.371139e-08, 1, 8.742278e-08, 1, 4.371139e-08, 0, 0.021560073, 0.0006316006)
+pixel_size = 0.0003
+text = "RESTART"
+font_size = 50
+
+[node name="ButtonStand" type="StaticBody3D" parent="PushButton"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PushButton/ButtonStand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2399114, 0)
+mesh = SubResource("CylinderMesh_gngh3")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PushButton/ButtonStand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19077204, 0)
+shape = SubResource("CylinderShape3D_gngh3")
 
 [editable path="Levers/Platsic_Lever"]
 [editable path="Levers/Glass_Lever"]
 [editable path="Levers/Paper_Lever"]
-[editable path="Scoreboard/PushButton"]
+[editable path="PushButton"]

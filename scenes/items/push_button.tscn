@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://vctwi1ubybeh"]
+[gd_scene load_steps=14 format=3 uid="uid://vctwi1ubybeh"]
 
+[ext_resource type="Texture2D" uid="uid://bun70wcipcec0" path="res://assets/models/simple_table_low_poly_0.jpg" id="1_bwy6v"]
 [ext_resource type="Script" uid="uid://dq042kibpfryy" path="res://addons/godot-xr-tools/interactables/interactable_area_button.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://dc5t2qgmhb2nf" path="res://addons/godot-xr-tools/objects/hand_pose_area.tscn" id="3_2axcm"]
 [ext_resource type="Resource" uid="uid://ciw0f7mg4ai0k" path="res://addons/godot-xr-tools/hands/poses/pose_point_left.tres" id="4_sgcw0"]
@@ -9,7 +10,11 @@
 height = 0.05
 radius = 0.05
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fgg1s"]
+albedo_texture = ExtResource("1_bwy6v")
+
 [sub_resource type="CylinderMesh" id="2"]
+material = SubResource("StandardMaterial3D_fgg1s")
 top_radius = 0.05
 bottom_radius = 0.05
 height = 0.05
