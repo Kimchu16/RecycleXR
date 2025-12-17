@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://bwnmul68dt4rr"]
+[gd_scene load_steps=57 format=3 uid="uid://bwnmul68dt4rr"]
 
 [ext_resource type="PackedScene" uid="uid://tomnlfum1cqm" path="res://assets/models/simple_table_low_poly.glb" id="2_0xm2m"]
 [ext_resource type="Material" uid="uid://ds2dpvbpht0ea" path="res://addons/godot-xr-tools/hands/materials/labglove.tres" id="2_7mycd"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://dhbqusuodrl3r" path="res://addons/hand_pose_detector/poses/fist.tres" id="8_dg77c"]
 [ext_resource type="Script" uid="uid://flof6yq6ri23" path="res://addons/hand_pose_detector/hand_pose_set.gd" id="8_w48qg"]
 [ext_resource type="Script" uid="uid://c862lel4opmi7" path="res://addons/hand_pose_detector/hand_pose_action_map.gd" id="8_ycdy4"]
+[ext_resource type="AudioStream" uid="uid://bxdk5px2wce0f" path="res://assets/audio/lever.mp3" id="11_b1qrp"]
 [ext_resource type="Texture2D" uid="uid://cnaqxk8l1taa0" path="res://assets/images/asphalt_02_diff_1k.png" id="11_lswn8"]
 [ext_resource type="Texture2D" uid="uid://bmfgw6q41vawu" path="res://assets/images/asphalt_02_nor_gl_1k.png" id="12_a6jrf"]
 [ext_resource type="PackedScene" uid="uid://b42eurmxw7s01" path="res://scenes/bins/blue_recycle_bin_9.tscn" id="13_getpj"]
@@ -148,6 +149,9 @@ stream = ExtResource("23_d13ii")
 script = ExtResource("33_jq2sk")
 levers = [NodePath("../Levers/Platsic_Lever/LeverOrigin/InteractableLever"), NodePath("../Levers/Glass_Lever/LeverOrigin/InteractableLever"), NodePath("../Levers/Paper_Lever/LeverOrigin/InteractableLever")]
 billboard = NodePath("../Billboard")
+
+[node name="LeverMoveAudio" type="AudioStreamPlayer3D" parent="LeverManager"]
+stream = ExtResource("11_b1qrp")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -402,7 +406,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42774335, 0.9056682, -0.71
 
 [node name="InteractableLever" parent="Levers/Platsic_Lever/LeverOrigin" index="0"]
 label_id = 0
-default_position = -45.0
 
 [node name="InteractableHandle" parent="Levers/Platsic_Lever/LeverOrigin/InteractableLever/HandleOrigin" index="0"]
 collision_layer = 4
@@ -414,7 +417,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9056682, -0.71732295)
 
 [node name="InteractableLever" parent="Levers/Glass_Lever/LeverOrigin" index="0"]
 label_id = 1
-default_position = -45.0
 
 [node name="InteractableHandle" parent="Levers/Glass_Lever/LeverOrigin/InteractableLever/HandleOrigin" index="0"]
 collision_layer = 4
@@ -426,7 +428,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38746777, 0.9056682, -0.717
 
 [node name="InteractableLever" parent="Levers/Paper_Lever/LeverOrigin" index="0"]
 label_id = 2
-default_position = -45.0
 
 [node name="InteractableHandle" parent="Levers/Paper_Lever/LeverOrigin/InteractableLever/HandleOrigin" index="0"]
 collision_layer = 4
@@ -434,18 +435,18 @@ collision_layer = 4
 [node name="HighlightRing" parent="Levers/Paper_Lever/LeverOrigin/InteractableLever/HandleOrigin/InteractableHandle" index="3" instance=ExtResource("32_htxhm")]
 
 [node name="Plastic_Icon" type="Sprite3D" parent="Levers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42183602, 1.4561352, -0.7594601)
-pixel_size = 0.004
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.43796712, 1.3144871, -0.7594601)
+pixel_size = 0.002
 texture = ExtResource("28_kq58d")
 
 [node name="Glass_Icon" type="Sprite3D" parent="Levers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0045027137, 1.4561352, -0.7594601)
-pixel_size = 0.004
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0045027137, 1.3045666, -0.7594601)
+pixel_size = 0.002
 texture = ExtResource("29_seu75")
 
 [node name="Paper_Icon" type="Sprite3D" parent="Levers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4009717, 1.4561352, -0.7594601)
-pixel_size = 0.004
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4009717, 1.3079735, -0.7594601)
+pixel_size = 0.002
 texture = ExtResource("28_xuqvo")
 
 [editable path="Levers/Platsic_Lever"]

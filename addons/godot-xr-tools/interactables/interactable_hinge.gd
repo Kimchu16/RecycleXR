@@ -31,7 +31,7 @@ signal hinge_moved(angle)
 @export var hinge_steps : float = 0.0: set = _set_hinge_steps
 
 ## Hinge position
-@export var hinge_position : float = 0.0: set = _set_hinge_position
+@export var hinge_position : float = -45.0: set = _set_hinge_position
 
 ## Default position
 @export var default_position : float = 0.0: set = _set_default_position
