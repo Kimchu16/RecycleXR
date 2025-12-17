@@ -9,8 +9,7 @@ Class Group:
 Github: https://github.com/Kimchu16/RecycleXR
 
 # Video
-
-[![YouTube](http://img.youtube.com/vi/J2kHSSFA4NU/0.jpg)](https://www.youtube.com/watch?v=J2kHSSFA4NU)
+[![Youtube](https://img.youtube.com/vi/mgsC-Wzk3-c/maxresdefault.jpg)](https://youtube.com/shorts/mgsC-Wzk3-c)
 
 # Screenshots
 ![1000001859](https://github.com/user-attachments/assets/d391f566-a16a-437c-829c-b27507ac5c55)
