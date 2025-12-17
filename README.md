@@ -13,6 +13,12 @@ Github: https://github.com/Kimchu16/RecycleXR
 [![YouTube](http://img.youtube.com/vi/J2kHSSFA4NU/0.jpg)](https://www.youtube.com/watch?v=J2kHSSFA4NU)
 
 # Screenshots
+![1000001859](https://github.com/user-attachments/assets/d391f566-a16a-437c-829c-b27507ac5c55)
+![1000001857](https://github.com/user-attachments/assets/d6c46190-e8b6-4238-9073-30ec379611ba)
+![1000001856](https://github.com/user-attachments/assets/0f5324f1-939d-4317-a977-828821c93c8c)
+![1000001854](https://github.com/user-attachments/assets/8c765f87-1dbc-4769-bf28-57f630b90a95)
+![1000001860](https://github.com/user-attachments/assets/328fce35-aa9d-4541-ac46-9751d3e41910)
+
 
 # Description of the project
 RecycleXR is a Mixed Reality educational experience designed for the Meta Quest 3 that teaches basic correct waste sorting through direct interaction. Users pick up common recyclable items using hand tracking, inspect their recycling labels, and place them into the correct bin. Immediate feedback is provided through spatial audio, particle effects, and a live scoreboard that tracks correct and incorrect sorting.
